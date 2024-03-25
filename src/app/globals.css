@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: rgb(255, 255, 255);
+  font-family: 'Plus Jakarta Sans', sans-serif, Arial, sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.ellipseStyle {
+  background-image: url('/images/ellipse.svg');
+  object-fit: cover;
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+}
+.ellipse3Style {
+  background-image: url('/images/ellipse3.svg');
+  object-fit: cover;
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  bottom: 0;
+  left: 0;
+}
