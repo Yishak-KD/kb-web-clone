@@ -50,7 +50,7 @@ const Navigation = () => {
                 </div>
             ) : (
                 <>
-                    <div className='bg-[#E6F5FB] space-x-12 rounded-[36px] px-16 py-3 flex items-center mx-auto'>
+                    <div className='shadow-lg bg-[#E6F5FB] space-x-12 rounded-[36px] px-16 py-3 flex items-center mx-auto'>
                         <Image
                             src={'/images/kb_logo.svg'}
                             alt=""
