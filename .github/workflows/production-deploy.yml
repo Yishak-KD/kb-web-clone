@@ -1,0 +1,59 @@
+name: Deploy to Production Environment
+
+on:
+  push:
+
+jobs:
+  deploy-production:
+    name: Deploy to production
+    runs-on: ubuntu-latest
+
+    env:
+      NEXT_PUBLIC_IP_REGISTRY_API_KEY: ${{ secrets.NEXT_PUBLIC_IP_REGISTRY_API_KEY }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0.6.0
+        with:
+          project_id: ${{ secrets.GCP_KEDUS_BIBLE_PROJECT_ID }}
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          export_default_credentials: true
+
+      - name: Generate Environment var for production stage
+        run: |
+          touch .env
+          echo NEXT_PUBLIC_IP_REGISTRY_API_KEY=${{ secrets.NEXT_PUBLIC_IP_REGISTRY_API_KEY }} >> .env
+          echo DATABASE_URL=${{ secrets.DATABASE_URL }} >> .env
+          cat .env
+
+      - name: Configure Docker for GCP
+        run: gcloud auth configure-docker gcr.io
+
+      - name: Build and Push Docker image
+        run: |
+          docker build \
+            --build-arg NEXT_PUBLIC_IP_REGISTRY_API_KEY=${{ secrets.NEXT_PUBLIC_IP_REGISTRY_API_KEY }} \
+            --build-arg DATABASE_URL=${{ secrets.DATABASE_URL }} \
+            -t gcr.io/${{ secrets.GCP_KEDUS_BIBLE_PROJECT_ID }}/kedus-bible:latest .
+          docker push gcr.io/${{ secrets.GCP_KEDUS_BIBLE_PROJECT_ID }}/kedus-bible:latest
+
+      - name: Deploy Docker container to VM
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VM_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            docker pull gcr.io/${{ secrets.GCP_KEDUS_BIBLE_PROJECT_ID }}/kedus-bible:latest
+            docker stop kedus-bible || true
+            docker rm kedus-bible || true
+            docker image prune -a -f
+            docker run -d --name kedus-bible -p 3000:3000 \
+              -e NEXT_PUBLIC_IP_REGISTRY_API_KEY=${{ secrets.NEXT_PUBLIC_IP_REGISTRY_API_KEY }} \
+              -e DATABASE_URL=${{ secrets.DATABASE_URL }} \
+              gcr.io/${{ secrets.GCP_KEDUS_BIBLE_PROJECT_ID }}/kedus-bible:latest
