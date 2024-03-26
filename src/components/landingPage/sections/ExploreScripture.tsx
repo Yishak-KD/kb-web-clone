@@ -8,7 +8,7 @@ const ExploreScripture = () => {
                 <img src="/images/ellipse3.svg" alt="" className="z-0 absolute bottom-[-200px] lg:left-[-200px] left-[-150px]" />
                 <div className="z-10 relative">
                     <PageHeader bigTitle={'Explore Scripture in Your Language'} smallTitle={'MULTIPLE LANGUAGES'} />
-                    <p>Dive into the richness of God's Word in the language that speaks to your heart - Amharic, English, Afaan Oromo, or Tigrinya and more to come. Enjoy the nuances and beauty of each translation as you deepen your understanding.</p>
+                    <p>{`Dive into the richness of God's Word in the language that speaks to your heart - Amharic, English, Afaan Oromo, or Tigrinya and more to come. Enjoy the nuances and beauty of each translation as you deepen your understanding.`}</p>
                 </div>
             </div>
             <div className="lg:col-span-1 col-span-2 lg:mt-[-180px]">

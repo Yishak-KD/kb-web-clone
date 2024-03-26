@@ -2,14 +2,17 @@ import Image from "next/image"
 import PageHeader from "../PageHeader"
 import { useState } from "react"
 import axios from "axios"
-import { Button, Modal, Box, TextField } from "@mui/material";
+import Button from "@mui/material/Button";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+
 import { Close } from "@mui/icons-material";
 
 const Donate = () => {
     const [donationAmount, setDonationAmount] = useState<string>("$10")
     const [paymentMethod, setPaymentMethod] = useState<string>("chapa")
     const [donationFrequency, setDonationFrequency] = useState<string>("Monthly")
-    const [error, setError] = useState<string>();
     const [modalOpen, setModalOpen] = useState(false);
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
@@ -19,7 +22,7 @@ const Donate = () => {
         if (donationAmount && paymentMethod && donationFrequency) {
             setModalOpen(true);
         } else {
-            setError("All fields are required");
+            console.warn("All fields are required");
         }
     };
 
@@ -67,14 +70,14 @@ const Donate = () => {
                 }
             } catch (error) {
                 if (axios.isAxiosError(error) && error.response?.data?.error) {
-                    setError(error.response.data.error);
+                    console.warn(error.response.data.error);
                 } else {
                     console.error(error);
-                    setError("An error occured while submitting the form");
+                    console.warn("An error occured while submitting the form");
                 }
             }
         } else {
-            setError("All fields are required");
+            console.warn("All fields are required");
         }
     };
 
@@ -83,7 +86,7 @@ const Donate = () => {
         <div className="bg-[#F6F6F6]" id="donateNow">
             <div className="lg:text-center lg:w-7/12 lg:p-32 p-8 mx-auto lg:mb-0 mb-6">
                 <PageHeader bigTitle={'Donate Now'} smallTitle={'LOREM IPSUM'} />
-                <p>We are a team passionate about making the Bible accessible to everyone digitally, fostering a deeper connection with the scriptures and enriching spiritual journeys. Your generous donation can make a real difference in achieving this mission. Here's how your contribution can impact</p>
+                <p>{`We are a team passionate about making the Bible accessible to everyone digitally, fostering a deeper connection with the scriptures and enriching spiritual journeys. Your generous donation can make a real difference in achieving this mission. Here's how your contribution can impact`}</p>
             </div>
 
             <div className="relative flex lg:flex-row flex-col lg:w-[90%] lg:px-28 px-8 mx-auto gap-6 mb-12">
@@ -105,12 +108,12 @@ const Donate = () => {
             <div className="relative grid lg:grid-cols-2 lg:w-[90%] lg:px-28 px-8 mx-auto gap-10">
                 <div className="z-10 col-span-1 rounded-md pb-10 px-10 py-6 border-[#FFFFFF] shadow-md bg-[#F6F6F6]">
                     <h1 className="text-xl font-semibold mb-3">Reaching a Wider Audience</h1>
-                    <p>Your contribution empowers us to reach more people through marketing and promotional efforts, spreading awareness about Kedus Bible and its benefits.</p>
+                    <p>{`Your contribution empowers us to reach more people through marketing and promotional efforts, spreading awareness about Kedus Bible and its benefits.`}</p>
                 </div>
                 <img src="/images/ellipse5.svg" alt="" className="absolute top-[-200px] lg:right-[-100px] right-0 z-0 opacity-90" />
                 <div className="z-10 col-span-1 rounded-md px-10 py-6 border-[#FFFFFF] shadow-md bg-[#F6F6F6]">
                     <h1 className="text-xl font-semibold mb-3">Keeping it Free and Accessible</h1>
-                    <p>Your support is crucial in keeping the core functionalities of Kedus Bible free for everyone. This ensures financial limitations don't hinder individuals from engaging with the Bible.</p>
+                    <p>{`Your support is crucial in keeping the core functionalities of Kedus Bible free for everyone. This ensures financial limitations don't hinder individuals from engaging with the Bible.`}</p>
                 </div>
             </div>
 
