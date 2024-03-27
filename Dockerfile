@@ -10,7 +10,6 @@ RUN yarn install
 # Run Prisma generate here
 COPY . .
 RUN npx prisma generate
-RUN npx prisma db push --force-reset
 RUN npx prisma db push
 
 # Rebuild the source code only when needed
