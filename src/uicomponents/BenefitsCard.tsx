@@ -16,7 +16,7 @@ const BenefitsCard = ({ data }: BenefitCardProps) => {
         <div className="">
             {data.map((item, id) => {
                 return (
-                    <div className="bg-[#FFFFFF] flex flex-col items-center pt-10 rounded-2xl" key={id} style={{flex: 1, height: '600px'}}>
+                    <div className="flex flex-col items-center pt-10" key={id} style={{flex: 1, height: '600px', backgroundColor: '#FFFFFF', paddingTop: '30px', borderRadius: '20px'}}>
                         <h1 className="font-semibold text-xl mb-8">{item.title}</h1>
                         {item.id === 2 ? (
                             <div className="flex flex-col items-center">
