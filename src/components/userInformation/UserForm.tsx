@@ -52,9 +52,9 @@ const UserForm = () => {
     return (
         <div id="contact" className='mt-32 lg:w-2/4 w-full mx-auto'>
 
-            {showSuccessMessage ? (
+            {!showSuccessMessage ? (
                 <div className='mt-10 lg:w-2/4 w-full lg:px-0 px-8 mx-auto'>
-                    <div className='text-center text-2xl font-semibold'>
+                    <div className='text-center text-2xl font-semibold mb-6'>
                         <h1>Submit user information</h1>
                     </div>
                     <div>
