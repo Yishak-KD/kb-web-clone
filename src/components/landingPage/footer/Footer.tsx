@@ -171,6 +171,15 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
+            <div className="flex text-center justify-center mb-6">
+                <Link href={'https://kedusbible.com/termsofuse'} target="_blank">
+                    <p>Terms of Use</p>
+                </Link>
+                <span className="mx-2">|</span>
+                <Link href={'https://kedusbible.com/privacy'} target="_blank">
+                    <p>Privacy Policy</p>
+                </Link>
+            </div>
             <div className="text-center text-sm pb-8">
                 Copyright © 2023 Kidus Bible - All rights reserved
             </div>
