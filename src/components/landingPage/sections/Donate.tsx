@@ -160,7 +160,7 @@ const Donate = () => {
                         <input type="radio" name="paymentMethod" value="paypal" onChange={handlePaymentChange} style={{ width: '20px', height: '20px' }} />
                         <Image src={'/images/paypal.svg'} height={150} width={150} alt="" />
                     </div>
-                    <div className="">
+                    <div className="border-2 border-red-500">
                         <h1 className="text-xl font-semibold mb-8">Choose a donation frequency</h1>
                         <div className="flex space-x-20">
                             <div className="z-10 mb-16 flex flex-row space-x-4 items-center justify-start">
@@ -172,7 +172,7 @@ const Donate = () => {
                                 <h4>One Time</h4>
                             </div>
                         </div>
-                        <button className="mt-[-18px] bg-black text-white px-10 py-2 lg:w-[35%] w-full lg:text-start justify-center rounded-3xl flex" onClick={handleModalOpen}>Donate Now</button>
+                        <button className="mt-[-18px] bg-black text-white px-10 py-2 lg:text-start justify-center rounded-3xl flex" onClick={handleModalOpen}>Donate Now</button>
 
                         {/* Modal */}
                         <Modal open={modalOpen} onClose={handleModalClose}>

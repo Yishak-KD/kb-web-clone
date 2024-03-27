@@ -3,8 +3,8 @@ import PageHeader from "../PageHeader"
 
 const ImmerseYourself = () => {
     return (
-        <div className="lg:grid lg:grid-cols-2 flex flex-col my-20 lg:w-4/5 lg:px-28 px-8 mx-auto gap-20">
-            <div className="lg:col-span-1">
+        <div className="lg:grid lg:grid-cols-2 py-10 flex flex-col my-16 lg:w-4/5 lg:px-28 px-8 mx-auto gap-20" id="audioBible">
+            <div className="lg:col-span-1 mt-20">
                 <Image src={'/images/scripture.svg'} height={500} width={500} alt="" />
             </div>
             <div className="lg:col-span-1 flex items-center justify-center flex-col order-1 lg:order-none">

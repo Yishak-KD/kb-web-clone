@@ -8,6 +8,7 @@ interface CardItems {
     detailIcon: string
     image?: string
     footerItem?: string
+    redirect: string
 }
 
 interface CardItemProps {
@@ -24,7 +25,8 @@ const CardSection = ({ items }: CardItemProps) => {
                             <div className={`relative flex flex-col items-center justify-center ${item.id === 3 ? 'h-64' : 'h-80'}`}>
                                 <h1 className={`font-bold text-center ${item.id === 2 || item.id === 4 ? 'lg:mt-[-180px] ' : 'mt-0'} mx-auto text-4xl xl:lg:px-0 px-4`}>{item.title}</h1>
                                 {item.image && <img src={item.image} alt="" height={110} width={110} className="lg:absolute lg:mt-10" />}
-                                <div className={`absolute flex lg:flex-row items-center border-[#fff] py-2 px-2 rounded-full ${item.id === 4 ? 'bg-transparent': 'bg-[#D7E5EC]'} w-[90%] justify-between bottom-2`}>
+                                <div className={`cursor-pointer absolute flex lg:flex-row items-center border-[#fff] py-2 px-2 rounded-full ${item.id === 4 ? 'bg-transparent' : 'bg-[#D7E5EC]'} w-[90%] justify-between bottom-2`}
+                                    onClick={() => window.location.replace(item.redirect)}>
                                     <h4 className="text-center flex-grow">{item.detailTitle}</h4>
                                     <img src={item.detailIcon} alt="" height={40} width={40} />
                                 </div>

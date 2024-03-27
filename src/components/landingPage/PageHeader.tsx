@@ -19,7 +19,7 @@ const PageHeader = ({ smallTitle, bigTitle, styles }: PageHeaderProps) => {
                 </div>
             )}
             <h4
-                className="small-title text-4xl leading-[50px] mb-5 w-full font-bold"
+                className="small-title text-4xl leading-[50px] mb-5 font-bold"
                 style={styles?.bigTitle}
             >
                 {bigTitle}

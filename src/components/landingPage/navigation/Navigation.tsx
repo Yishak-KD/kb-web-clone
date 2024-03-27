@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
@@ -50,39 +49,29 @@ const Navigation = () => {
             ) : (
                 <>
                     <div className='shadow-lg bg-[#E6F5FB] space-x-12 rounded-[36px] px-16 py-3 flex items-center mx-auto'>
-                        <Image
-                            src={'/images/kb_logo.svg'}
-                            alt=""
-                            width={30}
-                            height={30}
-                        />
-                        <Link href={''} className='hover:text-[#CAA12F]'>
-                            <span>Home</span>
-                        </Link>
-                        {/* <Link href={'#about'} className='hover:text-[#CAA12F]'>
-                            <span>About</span>
-                        </Link> */}
-                        <Link href={'#features'} className='hover:text-[#CAA12F]'>
+                        <div onClick={() =>
+                            window.location.replace('/#home')
+                        } className='cursor-pointer'>
+                            <Image
+                                src={'/images/kb_logo.svg'}
+                                alt=""
+                                width={30}
+                                height={30}
+                            />
+                        </div>
+                        <div onClick={() => window.location.replace('/#features')} className='cursor-pointer hover:text-[#CAA12F]'>
                             <span>Features</span>
-                        </Link>
-                        <Link href={'#benefits'} className='hover:text-[#CAA12F]'>
+                        </div>
+                        <div onClick={() => window.location.replace('/#benefits')} className='cursor-pointer hover:text-[#CAA12F]'>
                             <span>Benefits</span>
-                        </Link>
-                        <Link href={'#donateNow'} className='hover:text-[#CAA12F]'>
+                        </div>
+                        <div onClick={() => window.location.replace('/#donateNow')} className='cursor-pointer hover:text-[#CAA12F]'>
                             <span>Donate Now</span>
-                        </Link>
-                        <Link href={'#contactUs'} className='hover:text-[#CAA12F]'>
+                        </div>
+                        <div onClick={() => window.location.replace('/#contactUs')} className='cursor-pointer hover:text-[#CAA12F]'>
                             <span>Contact Us</span>
-                        </Link>
+                        </div>
                     </div>
-
-                    {/* <Button
-                        variant="outlined"
-                        className='bg-gray-900 text-white text-base border rounded-3xl py-2 px-8'
-                    >
-                        Contact Us
-                    </Button> */}
-
                 </>
             )}
             <Drawer
@@ -94,11 +83,6 @@ const Navigation = () => {
                     <div style={{ marginBottom: '25px' }}>
                     </div>
                     <div>
-                        {/* <ListItem
-                            onClick={() => smoothScroll('about')}
-                        >
-                            <ListItemText primary="About" />
-                        </ListItem> */}
                         <ListItem onClick={() => smoothScroll('features')}>
                             <ListItemText primary="Features" />
                         </ListItem>
