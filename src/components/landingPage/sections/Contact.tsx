@@ -36,7 +36,7 @@ const Contact = () => {
 
     return (
         <div className="w-full relative lg:my-0 my-20" id="contactUs">
-            <img src="/images/ellipse7.svg" alt="" className="absolute top-[-100px] right-0 z-0 opacity-90" />
+            <img src="/images/ellipse7.svg" alt="" className="absolute top-[-80px] right-0 z-0 opacity-90" />
             <div className="relative lg:text-center lg:w-7/12 w-full lg:p-32 p-8 mx-auto">
                 <PageHeader bigTitle={'Feel Free To Contact Us!'} smallTitle={'LOREM IPSUM'} />
                 <p>Lorem ipsum dolor sit amet consectetur. Mus amet tristique vestibulum nisi sit. Donec sit nibh risus aliquet accumsan egestas egestas.</p>

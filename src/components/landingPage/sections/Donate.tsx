@@ -127,7 +127,7 @@ const Donate = () => {
                 </div>
             </div>
 
-            <div className="relative lg:grid lg:grid-cols-2  lg:w-4/5 mx-auto shadow-lg lg:px-20 px-8 py-10 mt-20">
+            <div className="relative lg:grid lg:grid-cols-2  lg:w-4/5 mx-auto shadow-lg lg:px-20 px-8 py-20 mt-20">
                 <div className="col-span-1">
                     <img src="/images/ellipse6.svg" alt="" className="absolute top-20 left-[-200px] z-0 opacity-90" />
                     <h1 className="text-xl font-semibold lg:mb-16 mb-10">Choose a donation amount</h1>
@@ -151,10 +151,6 @@ const Donate = () => {
                             <h4 className="font-semibold">$ 50</h4>
                         </div>
                     </div>
-                    {/* <div className="relative flex flex-row items-center mt-20 lg:mb-0 mb-10 space-x-6">
-                        <p className="text-xl font-semibold">$</p>
-                        <input type="text" placeholder="Write your own amount" className="outline-none border bg-transparent border-[#D9D9D9] placeholder:text-[#000000] pl-4 pr-10 py-2 rounded-md" />
-                    </div> */}
                 </div>
                 <div className="col-span-1 relative">
                     <h1 className="text-xl font-semibold mb-16">Desired payment method</h1>
@@ -170,7 +166,7 @@ const Donate = () => {
                         <input type="radio" name="paymentMethod" value="paypal" onChange={handlePaymentChange} style={{ width: '20px', height: '20px' }} />
                         <Image src={'/images/paypal.svg'} height={150} width={150} alt="" />
                     </div>
-                    <div className="">
+                    <div>
                         <h1 className="text-xl font-semibold mb-8">Choose a donation frequency</h1>
                         <div className="flex space-x-20">
                             <div className="z-10 mb-16 flex flex-row space-x-4 items-center justify-start">
@@ -182,7 +178,7 @@ const Donate = () => {
                                 <h4>One Time</h4>
                             </div>
                         </div>
-                        <button className="mt-[-18px] bg-black text-white px-10 py-2 lg:text-start justify-center rounded-3xl flex" onClick={handleModalOpen}>Donate Now</button>
+                        <button className="z-10 mt-[-18px] bg-black text-white px-14 py-2 lg:text-start justify-center rounded-3xl flex" onClick={handleModalOpen}>Donate Now</button>
 
                         {/* Modal */}
                         <Modal open={modalOpen} onClose={handleModalClose}>
