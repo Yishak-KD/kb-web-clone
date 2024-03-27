@@ -1,13 +1,14 @@
 interface PageHeaderProps {
     smallTitle?: String
     bigTitle: String
+    width?: String
     styles?: {
         smallTitle?: Object
         bigTitle?: Object
     }
 }
 
-const PageHeader = ({ smallTitle, bigTitle, styles }: PageHeaderProps) => {
+const PageHeader = ({ smallTitle, bigTitle, styles, width }: PageHeaderProps) => {
     return (
         <div className="w-full">
             {smallTitle && (
@@ -19,7 +20,7 @@ const PageHeader = ({ smallTitle, bigTitle, styles }: PageHeaderProps) => {
                 </div>
             )}
             <h4
-                className="small-title text-4xl leading-[50px] mb-5 font-bold"
+                className={`small-title text-4xl leading-[50px] w-${width} mb-5 font-bold`}
                 style={styles?.bigTitle}
             >
                 {bigTitle}

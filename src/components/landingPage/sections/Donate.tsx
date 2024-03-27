@@ -17,7 +17,6 @@ const Donate = () => {
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
 
-
     const handleModalOpen = () => {
         if (donationAmount && paymentMethod && donationFrequency) {
             setModalOpen(true);
@@ -110,7 +109,7 @@ const Donate = () => {
                     <h1 className="text-xl font-semibold mb-3">Reaching a Wider Audience</h1>
                     <p>{`Your contribution empowers us to reach more people through marketing and promotional efforts, spreading awareness about Kedus Bible and its benefits.`}</p>
                 </div>
-                <img src="/images/ellipse5.svg" alt="" className="absolute top-[-200px] lg:right-[-100px] right-0 z-0 opacity-90" />
+                <img src="/images/ellipse5.svg" alt="" className="absolute top-[-200px] lg:right-[-70px] right-0 z-0 opacity-90" />
                 <div className="z-10 col-span-1 rounded-md px-10 py-6 border-[#FFFFFF] shadow-md bg-[#F6F6F6]">
                     <h1 className="text-xl font-semibold mb-3">Keeping it Free and Accessible</h1>
                     <p>{`Your support is crucial in keeping the core functionalities of Kedus Bible free for everyone. This ensures financial limitations don't hinder individuals from engaging with the Bible.`}</p>
@@ -160,7 +159,7 @@ const Donate = () => {
                         <input type="radio" name="paymentMethod" value="paypal" onChange={handlePaymentChange} style={{ width: '20px', height: '20px' }} />
                         <Image src={'/images/paypal.svg'} height={150} width={150} alt="" />
                     </div>
-                    <div className="border-2 border-red-500">
+                    <div className="">
                         <h1 className="text-xl font-semibold mb-8">Choose a donation frequency</h1>
                         <div className="flex space-x-20">
                             <div className="z-10 mb-16 flex flex-row space-x-4 items-center justify-start">
@@ -176,13 +175,31 @@ const Donate = () => {
 
                         {/* Modal */}
                         <Modal open={modalOpen} onClose={handleModalClose}>
-                            <Box sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', bgcolor: 'background.paper', borderRadius: '8px', boxShadow: 24, padding: '70px 30px', width: 600 }}>
+                            <Box sx={{
+                                position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', bgcolor: 'background.paper', borderRadius: '8px', boxShadow: 24, padding: '70px 30px', width: 600, outline: 'none',
+                                '@media screen and (max-width: 760px)': {
+                                    padding: '100px 20px',
+                                    width: '100vw',
+                                    height: '100vh'
+                                }
+                            }}>
                                 <div className="relative top-[-25px] flex float-end hover:cursor-pointer w-fit" style={{ marginTop: '-20px' }} onClick={handleModalClose}>
                                     <Close />
                                 </div>
-                                <TextField fullWidth label="Full Name" value={fullName} onChange={handleFullNameChange} className="mb-6"/>
-                                <TextField fullWidth label="Email" value={email} onChange={handleEmailChange} />
-                                <Button variant="contained" className="bg-black text-white px-10 py-2 rounded-3xl top-10" style={{float: "right"}} onClick={handleSubmit}>Submit</Button>
+                                <div>
+                                    <h2 className="font-semibold text-xl mb-4">Express Your Generosity</h2>
+                                    <p className="text-base mb-4">Share your name and email to join our mission of making a difference. Together, we can create positive change. Thank you for your support.</p>
+                                </div>
+                                <div>
+                                    <p className="font-semibold mb-3">Name</p>
+                                    <TextField fullWidth label="Full Name" value={fullName} onChange={handleFullNameChange} className="mb-6 border border-slate-300" />
+                                </div>
+                                <div>
+                                    <p className="font-semibold mb-3">Address</p>
+                                    <TextField fullWidth label="Email" value={email} onChange={handleEmailChange} className="border border-slate-300"/>
+                                </div>
+
+                                <Button variant="contained" className="bg-black text-white px-10 py-2 rounded-3xl top-10" style={{ float: "right" }} onClick={handleSubmit}>Submit</Button>
                             </Box>
                         </Modal>
                     </div>

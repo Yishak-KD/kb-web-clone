@@ -28,10 +28,10 @@ const Footer = () => {
 
     const quickLinks = [
         { href: "/", name: "HOME" },
-        { href: "/", name: "FEATURES" },
-        { href: "/", name: "BENEFITS" },
-        { href: "/", name: "DONATE NOW" },
-        { href: "/", name: "CONTACT US" },
+        { href: "/#features", name: "FEATURES" },
+        { href: "/#benefits", name: "BENEFITS" },
+        { href: "/#donatNow", name: "DONATE NOW" },
+        { href: "/#contactUs", name: "CONTACT US" },
     ];
 
     useEffect(() => {
@@ -86,18 +86,18 @@ const Footer = () => {
                             width={30}
                             height={30}
                         />
-                        <h1 className="text-2xl font-medium text-[#9FC9EC] w-1/3">Kedus Bible</h1>
+                        <h1 className="text-2xl font-medium w-1/3">Kedus Bible</h1>
                     </div>
                     <p className="text-slate-700 text-base mt-4 lg:max-w-[60%]">
                         Lorem ipsum dolor sit amet consectetur. Sed volutpat facilisis facilisis sodales convallis in.
                     </p>
                 </div>
                 <div className="flex flex-col">
-                    <h3 className="text-base font-bold mb-3 text-[#9FC9EC]">Quick Links</h3>
+                    <h3 className="text-base font-bold mb-3">Quick Links</h3>
                     {quickLinks.map((item) => (
                         <Link
                             key={item.name}
-                            className="text-base pl-1 mt-3 text-[#9FC9EC]"
+                            className="text-base pl-1 mt-3"
                             href={item.href}
                         >
                             {item.name}
@@ -105,7 +105,7 @@ const Footer = () => {
                     ))}
                 </div>
                 <div>
-                    <h3 className="text-base font-bold mb-4 text-[#9FC9EC]">Get In Touch</h3>
+                    <h3 className="text-base font-bold mb-4">Get In Touch</h3>
                     <InTouchComponent
                         image="/images/post.svg"
                         text="support@aevue.com"
@@ -128,7 +128,7 @@ const Footer = () => {
                     />
                 </div>
                 <div>
-                    <h3 className="text-base font-bold mb-6 text-[#9FC9EC]">
+                    <h3 className="text-base font-bold mb-6">
                         Subscribe to our news letter
                     </h3>
 
@@ -171,7 +171,7 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <div className="text-[#9FC9EC] text-center text-sm pb-8">
+            <div className="text-center text-sm pb-8">
                 Copyright © 2023 Kidus Bible - All rights reserved
             </div>
         </div>
