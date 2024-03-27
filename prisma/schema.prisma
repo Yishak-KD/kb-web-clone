@@ -16,11 +16,12 @@ datasource db {
 model ContactUs {
   id        Int      @id @default(autoincrement())
   fullName  String
-  email     String
+  email     String   @unique
   message   String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  @@index([email])
   @@map(name: "contact_us")
 }
 
@@ -30,22 +31,24 @@ model Subscriber {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  @@index([email])
   @@map(name: "subscriber")
 }
 
-model UserInformation {
+model AppDeletionRequest {
   id        Int      @id @default(autoincrement())
   fullName  String   @unique
   email     String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  @@index([email])
   @@map(name: "user_information")
 }
 
 model Donations {
   id                Int      @id @default(autoincrement())
-  donationAmount    String
+  donationAmount    Int
   paymentMethod     String
   donationFrequency String
   fullName          String
@@ -53,5 +56,6 @@ model Donations {
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
 
+  @@index([email])
   @@map(name: "donation_information")
 }

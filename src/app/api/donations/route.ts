@@ -25,11 +25,17 @@ export async function POST(
         })
 
         // Return the success response as JSON
-        return NextResponse.json({ donations }, { status: 200 })
+        return NextResponse.json({ 
+            success: true,
+            value: donations
+         }, { status: 200 })
     } catch (error: any) {
         console.error(error)
 
         // Return the error response as JSON
-        return NextResponse.json({ error: 'An error occurred while processing' }, { status: 500 })
+        return NextResponse.json({ 
+            success: false,
+            error: 'Failed to save donation intent' 
+        }, { status: 500 })
     }
 }
