@@ -1,3 +1,4 @@
+import SocialMedias, { SocialMediaItems } from "@/uicomponents/SocialMedias"
 import Image from "next/image"
 
 interface CardItems {
@@ -14,6 +15,29 @@ interface CardItems {
 interface CardItemProps {
     items: CardItems[]
 }
+
+const SocialMediasData: SocialMediaItems[] = [
+    {
+        id: 1,
+        image: '/images/twitter3.svg',
+        width: 30
+    },
+    {
+        id: 2,
+        image: '/images/facebook3.svg',
+        width: 20
+    },
+    {
+        id: 3,
+        image: '/images/instagram3.svg',
+        width: 30
+    },
+    {
+        id: 4,
+        image: '/images/telegram3.svg',
+        width: 30
+    },
+]
 
 const CardSection = ({ items }: CardItemProps) => {
     return (
@@ -36,7 +60,7 @@ const CardSection = ({ items }: CardItemProps) => {
                         {(item.id === 1 || item.id === 5) && (
                             <div className="lg:block mt-4 w-[100%]">
                                 <div className={`flex space-x-6 justify-center h-28 rounded-[30px] ${item.id === 1 ? 'bg-black' : 'bg-[#A2CAEB]'}`}>
-                                    {item.footerItem && <Image src={`${item.footerItem}`} height={120} width={120} alt="" />}
+                                    {item.footerItem && <SocialMedias data={SocialMediasData}/>}
                                 </div>
                             </div>
                         )}

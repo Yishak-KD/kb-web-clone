@@ -7,6 +7,30 @@ import { CircularProgress, TextField } from "@mui/material"
 import Snackbar from "@/uicomponents/SnackBar"
 import { useState } from "react"
 import { EMAIL_REGEX } from "../../../../constants/constants"
+import SocialMedias, { SocialMediaItems } from "@/uicomponents/SocialMedias"
+
+const SocialMediasData: SocialMediaItems[] = [
+    {
+        id: 1,
+        image: '/images/twitter.svg',
+        width: 25
+    },
+    {
+        id: 2,
+        image: '/images/facebook.svg',
+        width: 10
+    },
+    {
+        id: 3,
+        image: '/images/instagram.svg',
+        width: 20
+    },
+    {
+        id: 4,
+        image: '/images/telegram.svg',
+        width: 25
+    },
+]
 
 const Contact = () => {
     const {
@@ -51,10 +75,7 @@ const Contact = () => {
                         {/* Section 4 */}
                         <div className="flex flex-row space-x-5 mb-10">
                             <h1 className="font-semibold text-lg">Follow us</h1>
-                            <Image src={'/images/twitter.svg'} height={30} width={25} alt="" className="cursor-pointer`" />
-                            <Image src={'/images/facebook.svg'} height={30} width={10} alt="" className="cursor-pointer" />
-                            <Image src={'/images/instagram.svg'} height={30} width={20} alt="" className="cursor-pointer" />
-                            <Image src={'/images/telegram.svg'} height={30} width={25} alt="" className="cursor-pointer" />
+                            <SocialMedias data={SocialMediasData} />
                         </div>
                         {/* Section 5 */}
                         <div className="flex mx-auto lg:gap-10">
@@ -145,10 +166,7 @@ const Contact = () => {
                     {/* Section 4 */}
                     <div className="flex flex-row space-x-5 px-8 mb-10">
                         <h1 className="font-semibold text-lg">Follow us</h1>
-                        <Image src={'/images/twitter.svg'} height={30} width={25} alt="" />
-                        <Image src={'/images/facebook.svg'} height={30} width={10} alt="" />
-                        <Image src={'/images/instagram.svg'} height={30} width={20} alt="" />
-                        <Image src={'/images/telegram.svg'} height={30} width={25} alt="" />
+                        <SocialMedias data={SocialMediasData} />
                     </div>
                     {/* Section 5 */}
                     <div className="flex mx-auto lg:gap-10">
