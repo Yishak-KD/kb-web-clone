@@ -3,9 +3,10 @@ import PageHeader from "../PageHeader"
 import axios from "axios"
 import { isSuccessfullStatus } from "../../../../util/ResponseValidation"
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form"
-import { TextField } from "@mui/material"
+import { CircularProgress, TextField } from "@mui/material"
 import Snackbar from "@/uicomponents/SnackBar"
 import { useState } from "react"
+import { EMAIL_REGEX } from "../../../../constants/constants"
 
 const Contact = () => {
     const {
@@ -15,11 +16,13 @@ const Contact = () => {
         reset,
     } = useForm()
     const [showNotification, setShowNotification] = useState<boolean>(false)
+    const [loading, setLoading] = useState<boolean>(false)
 
     const handleFormSubmit: SubmitHandler<FieldValues> = async (data: FieldValues) => {
         try {
+            setLoading(true)
             const response = await axios.post('/api/contactUs', data)
-            if (isSuccessfullStatus(response) && response.data.success) {
+            if (isSuccessfullStatus(response) && response.data.contactUs) {
                 setShowNotification(true)
                 reset();
             } else {
@@ -28,6 +31,7 @@ const Contact = () => {
         } catch (error) {
             console.error('An error occurred:', error)
         }
+        setLoading(false)
     }
 
     return (
@@ -58,7 +62,6 @@ const Contact = () => {
                             <Image src={'/images/appleqr.svg'} height={100} width={100} alt="" className="mx-auto lg:h-full h-2/4 lg:w-full w-[35%]" />
                         </div>
                     </div>
-
                 </div>
                 <div className="col-span-1 lg:px-0 px-8">
                     <form onSubmit={handleSubmit(handleFormSubmit)}>
@@ -78,6 +81,10 @@ const Contact = () => {
                         <TextField
                             {...register('email', {
                                 required: 'Email is required',
+                                pattern: {
+                                    value: EMAIL_REGEX,
+                                    message: 'Email should be valid'
+                                }
                             })}
                             type="text"
                             placeholder="Email"
@@ -113,7 +120,19 @@ const Contact = () => {
                                 },
                             }}
                         />
-                        <button type="submit" className="bg-black text-white px-10 py-2 lg:w-[35%] w-full lg:text-start justify-center rounded-3xl flex">Send Message</button>
+                        <button type="submit" className="bg-black text-white px-10 py-2 lg:w-[35%] w-full lg:text-start justify-center rounded-3xl flex">
+                            {loading ? (
+                                <>
+                                    <span className="mr-2">Send Message</span>
+                                    <CircularProgress
+                                        style={{ color: 'white' }}
+                                        size={24}
+                                    />
+                                </>
+                            ) : (
+                                'Send Message'
+                            )}
+                        </button>
                     </form>
                     <Snackbar
                         open={showNotification}

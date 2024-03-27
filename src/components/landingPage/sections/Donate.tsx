@@ -2,12 +2,13 @@ import Image from "next/image"
 import PageHeader from "../PageHeader"
 import { useState } from "react"
 import axios from "axios"
-import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-
+import { CircularProgress } from "@mui/material";
 import { Close } from "@mui/icons-material";
+import { useForm } from "react-hook-form";
+import { EMAIL_REGEX } from "../../../../constants/constants";
 
 const Donate = () => {
     const [donationAmount, setDonationAmount] = useState<string>("$10")
@@ -16,6 +17,13 @@ const Donate = () => {
     const [modalOpen, setModalOpen] = useState(false);
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
+    const [loading, setLoading] = useState<boolean>(false)
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+        reset,
+    } = useForm()
 
     const handleModalOpen = () => {
         if (donationAmount && paymentMethod && donationFrequency) {
@@ -48,9 +56,10 @@ const Donate = () => {
         setDonationFrequency(event.target.value);
     };
 
-    const handleSubmit = async () => {
+    const handleFormSubmit = async () => {
         if (donationAmount && paymentMethod && donationFrequency) {
             try {
+                setLoading(true)
                 const response = await axios.post("/api/donations", {
                     donationAmount,
                     paymentMethod,
@@ -63,6 +72,7 @@ const Donate = () => {
                     setModalOpen(false)
                     setFullName("")
                     setEmail("")
+                    reset()
                     window.open("https://www.paypal.com/paypalme/KedusBible?v=1&utm_source=unp&utm_medium=email&utm_campaign=RT000269&utm_unptid=1d173892-5dae-11ee-a598-3cecef6b0210&ppid=RT000269&cnac=US&rsta=en_US%28en-US%29&cust=ZFGLH5CNR7VSG&unptid=1d173892-5dae-11ee-a598-3cecef6b0210&calc=f4767401b9a86&unp_tpcid=ppme-social-user-profile-created&page=main%3Aemail%3ART000269&pgrp=main%3Aemail&e=cl&mchn=em&s=ci&mail=sys&appVersion=1.205.0&xt=104038%2C124817", "_blank");
                 } else {
                     console.error("Error submitting data");
@@ -78,6 +88,7 @@ const Donate = () => {
         } else {
             console.warn("All fields are required");
         }
+        setLoading(false)
     };
 
 
@@ -176,7 +187,7 @@ const Donate = () => {
                         {/* Modal */}
                         <Modal open={modalOpen} onClose={handleModalClose}>
                             <Box sx={{
-                                position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', bgcolor: 'background.paper', borderRadius: '8px', boxShadow: 24, padding: '70px 30px', width: 600, outline: 'none',
+                                position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', bgcolor: 'background.paper', borderRadius: '8px', boxShadow: 24, padding: '65px 30px', width: 600, outline: 'none',
                                 '@media screen and (max-width: 760px)': {
                                     padding: '100px 20px',
                                     width: '100vw',
@@ -190,16 +201,60 @@ const Donate = () => {
                                     <h2 className="font-semibold text-xl mb-4">Express Your Generosity</h2>
                                     <p className="text-base mb-4">Share your name and email to join our mission of making a difference. Together, we can create positive change. Thank you for your support.</p>
                                 </div>
-                                <div>
-                                    <p className="font-semibold mb-3">Name</p>
-                                    <TextField fullWidth label="Full Name" value={fullName} onChange={handleFullNameChange} className="mb-6 border border-slate-300" />
-                                </div>
-                                <div>
-                                    <p className="font-semibold mb-3">Address</p>
-                                    <TextField fullWidth label="Email" value={email} onChange={handleEmailChange} className="border border-slate-300"/>
-                                </div>
+                                <form onSubmit={handleSubmit(handleFormSubmit)}>
+                                    <div>
+                                        <p className="font-semibold mb-3">Name</p>
+                                        <TextField fullWidth {...register('fullName', {
+                                            required: 'Full Name is required',
+                                        })}
+                                            placeholder="Full Name"
+                                            type="text"
+                                            variant="outlined"
+                                            error={!!errors.fullName}
+                                            helperText={
+                                                errors.fullName &&
+                                                (errors.fullName.message as string)
+                                            }
+                                            className="mb-6 border border-slate-300" 
+                                            onChange={handleFullNameChange}/>
+                                    </div>
+                                    <div>
+                                        <p className="font-semibold mb-3">Address</p>
+                                        <TextField
+                                            fullWidth
+                                            {...register('email', {
+                                                required: 'Email is required',
+                                                pattern: {
+                                                    value: EMAIL_REGEX,
+                                                    message: 'Please enter a valid email address'
+                                                }
+                                            })}
+                                            type="text"
+                                            placeholder="Email"
+                                            variant="outlined"
+                                            error={!!errors.email}
+                                            helperText={
+                                                errors.email &&
+                                                (errors.email.message as string)
+                                            }
 
-                                <Button variant="contained" className="bg-black text-white px-10 py-2 rounded-3xl top-10" style={{ float: "right" }} onClick={handleSubmit}>Submit</Button>
+                                            className="border border-slate-300 mb-8" 
+                                            onChange={handleEmailChange}/>
+                                    </div>
+                                    <button type='submit' className="bg-black hover:bg-black text-white px-10 py-2 rounded-3xl top-10" style={{ float: "right" }} disabled={loading}>
+                                        {loading ? (
+                                            <div className="flex items-center">
+                                                <span className="mr-2">Submit</span>
+                                                <CircularProgress
+                                                    style={{ color: 'white' }}
+                                                    size={20}
+                                                />
+                                            </div>
+                                        ) : (
+                                            'Submit'
+                                        )}
+                                    </button>
+                                </form>
                             </Box>
                         </Modal>
                     </div>
