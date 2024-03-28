@@ -6,6 +6,7 @@ import { EMAIL_REGEX } from '../../../constants/constants'
 import { useState } from 'react'
 import Snackbar from '@/uicomponents/SnackBar'
 import { AlertColor } from '@mui/material/Alert'
+import { CircularProgress } from '@mui/material'
 
 const UserForm = () => {
     const {
@@ -18,18 +19,19 @@ const UserForm = () => {
     const [showText, setShowText] = useState<string>("")
     const [showType, setShowType] = useState<AlertColor | undefined>()
     const [showSuccessMessage, setShowSuccessMessage] = useState<boolean>(false)
+    const [loading, setLoading] = useState<boolean>(false)
 
     const showSnackBar = ({ type, text }: { text: string, type: AlertColor | undefined }) => {
         setShowNotification(true)
         setShowType(type)
         setShowText(text)
-
     }
 
     const handleFormSubmit: SubmitHandler<FieldValues> = async (data: FieldValues) => {
         if (EMAIL_REGEX.test(data.email)) {
             try {
-                const response = await axios.post('/api/userInformation', data)
+                setLoading(true)
+                const response = await axios.post('/api/appDeletionRequest', data)
 
                 if (isSuccessfullStatus(response) && response) {
                     reset();
@@ -47,6 +49,7 @@ const UserForm = () => {
         else {
             console.error('error occurred');
         }
+        setLoading(false)
     }
 
     return (
@@ -121,7 +124,19 @@ const UserForm = () => {
                                     }}
                                 />
                             </div>
-                            <button className="mt-6 bg-red-500 text-white px-20 py-2 w-full lg:text-start justify-center rounded-3xl flex mx-auto">DELETE</button>
+                            <button className="mt-6 bg-red-500 text-white px-20 py-2 w-full lg:text-start justify-center rounded-3xl flex mx-auto">
+                            {loading ? (
+                                <>
+                                    <span className="mr-2">DELETE</span>
+                                    <CircularProgress
+                                        style={{ color: 'white' }}
+                                        size={24}
+                                    />
+                                </>
+                            ) : (
+                                'DELETE'
+                            )}
+                            </button>
                         </form>
                         {/* {showNotification && (
                         <div className="text-center mt-10 lg:w-2/4 w-full lg:px-0 px-8 mx-auto">
