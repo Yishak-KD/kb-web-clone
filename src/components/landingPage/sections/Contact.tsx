@@ -46,7 +46,7 @@ const Contact = () => {
         try {
             setLoading(true)
             const response = await axios.post('/api/contactUs', data)
-            if (isSuccessfullStatus(response) && response.data.contactUs) {
+            if (isSuccessfullStatus(response) && response.data.success) {
                 setShowNotification(true)
                 reset();
             } else {
@@ -61,12 +61,12 @@ const Contact = () => {
     return (
         <div className="w-full relative lg:my-0 my-20" id="contactUs">
             <img src="/images/ellipse7.svg" alt="" className="absolute top-[-80px] right-0 z-0 opacity-90" />
-            <div className="relative lg:text-center lg:w-7/12 w-full lg:p-32 p-8 mx-auto">
+            <div className="relative lg:text-center xl:w-7/12 lg:w-4/5 w-full lg:p-32 p-8 mx-auto">
                 <PageHeader bigTitle={'Feel Free To Contact Us!'} smallTitle={'LOREM IPSUM'} />
                 <p>Lorem ipsum dolor sit amet consectetur. Mus amet tristique vestibulum nisi sit. Donec sit nibh risus aliquet accumsan egestas egestas.</p>
             </div>
 
-            <div className="relative lg:grid lg:grid-cols-2 lg:w-4/5 w-full mx-auto flex flex-col gap-20">
+            <div className="relative lg:grid lg:grid-cols-2 xl:w-4/5 w-full mx-auto flex flex-col xl:gap-20 lg:gap-10">
                 <div className="flex flex-col items-start lg:pl-20 pl-8 col-span-1">
                     <h1 className="text-2xl font-semibold mb-6">General Inquiries</h1>
                     <p className="lg:max-w-[80%] max-w-[90%] mb-6">Lorem ipsum dolor sit amet consectetur. Sed volutpat facilisis facilisis sodales convallis in.</p>
@@ -141,7 +141,7 @@ const Contact = () => {
                                 },
                             }}
                         />
-                        <button type="submit" className="bg-black text-white px-10 py-2 lg:w-[35%] w-full lg:text-start justify-center rounded-3xl flex">
+                        <button type="submit" className="bg-black text-white lg:px-10 px-20 py-2 lg:text-start lg:w-[90%] w-full justify-center rounded-3xl flex">
                             {loading ? (
                                 <>
                                     <span className="mr-2">Send Message</span>
@@ -162,16 +162,16 @@ const Contact = () => {
                         type="success"
                     />
                 </div>
-                <div className="lg:xl:hidden block">
+                <div className="lg:xl:hidden block px-20">
                     {/* Section 4 */}
-                    <div className="flex flex-row space-x-5 px-8 mb-10">
+                    <div className="flex flex-row space-x-5 lg:px-8 px-0 my-10">
                         <h1 className="font-semibold text-lg">Follow us</h1>
                         <SocialMedias data={SocialMediasData} />
                     </div>
                     {/* Section 5 */}
-                    <div className="flex mx-auto lg:gap-10">
-                        <Image src={'/images/playstoreqr.svg'} height={100} width={100} alt="" className="mx-auto lg:h-full h-2/4 lg:w-full w-[35%]" />
-                        <Image src={'/images/appleqr.svg'} height={100} width={100} alt="" className="mx-auto lg:h-full h-2/4 lg:w-full w-[35%]" />
+                    <div className="flex gap-5">
+                        <Image src={'/images/playstoreqr.svg'} height={100} width={100} alt="" className="h-full w-[60%]" />
+                        <Image src={'/images/appleqr.svg'} height={100} width={100} alt="" className="h-full w-[60%]" />
                     </div>
                 </div>
             </div>

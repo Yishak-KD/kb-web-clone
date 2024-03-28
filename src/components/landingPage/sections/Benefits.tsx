@@ -25,7 +25,7 @@ const BenefitCardData: BenefitCardContent[] = [
 
 const Benefits = () => {
     return (
-        <div className="bg-[#F6F6F6] lg:my-20 w-full lg:px-28 px-8 lg:py-32 py-20 lg:text-center lg:flex lg:space-y-0 space-y-16 gap-6 flex-shrink-0" id="benefits">
+        <div className="bg-[#F6F6F6] lg:my-20 w-full xl:px-28 lg:px-12 px-8 lg:py-32 py-20 lg:text-center lg:flex lg:space-y-0 space-y-16 gap-6 flex-shrink-0" id="benefits">
             {BenefitCardData.map(item => (
                 <div key={item.id} className="flex-1">
                     <BenefitsCard data={[item]} />

@@ -94,12 +94,12 @@ const Donate = () => {
 
     return (
         <div className="bg-[#F6F6F6]" id="donateNow">
-            <div className="lg:text-center lg:w-7/12 lg:p-32 p-8 mx-auto lg:mb-0 mb-6">
+            <div className="lg:text-center xl:w-7/12 lg:w-4/5 lg:p-32 p-8 mx-auto lg:mb-0 mb-6">
                 <PageHeader bigTitle={'Donate Now'} smallTitle={'LOREM IPSUM'} />
                 <p>{`We are a team passionate about making the Bible accessible to everyone digitally, fostering a deeper connection with the scriptures and enriching spiritual journeys. Your generous donation can make a real difference in achieving this mission. Here's how your contribution can impact`}</p>
             </div>
 
-            <div className="relative flex lg:flex-row flex-col lg:w-[90%] lg:px-28 px-8 mx-auto gap-6 mb-12">
+            <div className="relative flex lg:flex-row flex-col xl:w-[90%] lg:px-28 px-8 mx-auto gap-6 mb-12">
                 <img src="/images/ellipse4.svg" alt="" className="absolute lg:top-[-150px] top-[-200px] lg:left-10 left-0 z-0 opacity-90" />
                 <div className="z-10 rounded-md px-10 py-6 border-[#FFFFFF] bg-[#F6F6F6] shadow-md">
                     <h1 className="text-xl font-semibold mb-3">Enhancing the App Experience</h1>
@@ -115,19 +115,19 @@ const Donate = () => {
                 </div>
             </div>
 
-            <div className="relative grid lg:grid-cols-2 lg:w-[90%] lg:px-28 px-8 mx-auto gap-10">
+            <div className="relative grid lg:grid-cols-2 xl:w-[90%] lg:px-28 px-8 mx-auto gap-10">
                 <div className="z-10 col-span-1 rounded-md pb-10 px-10 py-6 border-[#FFFFFF] shadow-md bg-[#F6F6F6]">
                     <h1 className="text-xl font-semibold mb-3">Reaching a Wider Audience</h1>
                     <p>{`Your contribution empowers us to reach more people through marketing and promotional efforts, spreading awareness about Kedus Bible and its benefits.`}</p>
                 </div>
-                <img src="/images/ellipse5.svg" alt="" className="absolute top-[-200px] lg:right-[-70px] right-0 z-0 opacity-90" />
+                <img src="/images/ellipse5.svg" alt="" className="absolute top-[-200px] xl:right-[-70px] right-0 z-0 opacity-90" />
                 <div className="z-10 col-span-1 rounded-md px-10 py-6 border-[#FFFFFF] shadow-md bg-[#F6F6F6]">
                     <h1 className="text-xl font-semibold mb-3">Keeping it Free and Accessible</h1>
                     <p>{`Your support is crucial in keeping the core functionalities of Kedus Bible free for everyone. This ensures financial limitations don't hinder individuals from engaging with the Bible.`}</p>
                 </div>
             </div>
 
-            <div className="relative lg:grid lg:grid-cols-2  lg:w-4/5 mx-auto shadow-lg lg:px-20 px-8 py-20 mt-20">
+            <div className="relative lg:grid lg:grid-cols-2 xl:w-4/5 mx-auto shadow-lg lg:px-20 px-8 py-20 mt-20">
                 <div className="col-span-1">
                     <img src="/images/ellipse6.svg" alt="" className="absolute top-20 left-[-200px] z-0 opacity-90" />
                     <h1 className="text-xl font-semibold lg:mb-16 mb-10">Choose a donation amount</h1>

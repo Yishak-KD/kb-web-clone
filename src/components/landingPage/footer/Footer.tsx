@@ -77,7 +77,7 @@ const Footer = () => {
 
     return (
         <div className="bg-[#F6F6F6]">
-            <div className=" mt-48 lg:px-32 sm:px-20 px-8 py-12 grid lg:grid-cols-4 md:grid-cols-2 lg:gap-2 gap-10">
+            <div className="mt-48 xl:px-32 lg:px-10 px-8 py-12 grid lg:grid-cols-4 md:grid-cols-2 lg:gap-2 gap-10">
                 <div>
                     <div className="flex flex-row items-center space-x-4">
                         <Image
@@ -127,12 +127,12 @@ const Footer = () => {
                         }
                     />
                 </div>
-                <div>
+                <div className="w-full flex flex-col">
                     <h3 className="text-base font-bold mb-6">
                         Subscribe to our news letter
                     </h3>
 
-                    <div className="flex items-center">
+                    <div className="flex flex-row w-full items-center">
                         <input
                             type="text"
                             placeholder="Enter your email"
@@ -142,21 +142,20 @@ const Footer = () => {
                                 setError(!inputValue);
                                 setEmail(inputValue);
                             }}
-                            className={`bg-[#E3E3E390] outline-none text-lg text-slate-700 py-2 px-4 flex-grow ${error && "border-red-500"
+                            className={`bg-[#E3E3E390]   outline-none text-lg text-slate-700 py-2 px-4  ${error && "border-red-500"
                                 }`}
-                            style={{ height: "50px", borderRadius: "5px" }}
+                            style={{ height: "50px", borderRadius: "5px",width:'calc(100% - 50px)' }}
                         />
                         <button
                             style={{
                                 height: "50px",
-                                width: "auto",
+                               
                                 minWidth: "50px",
                                 borderRadius: "5px",
                                 // backgroundColor: "#2B70FA",
                                 color: "#fff",
                                 border: "none",
                                 cursor: "pointer",
-                                flexGrow: 0,
                             }}
                             onClick={handleEmailSubscription}
                         >
@@ -171,7 +170,7 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <div className="flex text-center justify-center mb-6">
+            <div className="flex text-center text-sm justify-center mb-6">
                 <Link href={'https://kedusbible.com/termsofuse'} target="_blank">
                     <p>Terms of Use</p>
                 </Link>

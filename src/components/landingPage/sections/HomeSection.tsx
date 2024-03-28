@@ -62,9 +62,9 @@ const CardItems: CardItemContents[] = [
 const HomeSection = () => {
     return (
         <div className="mb-32 pt-40" id="home">
-            <div className="lg:w-4/5 w-full m-auto">
+            <div className="xl:lg:w-4/5 w-full m-auto">
                 <div className="text-center lg:w-2/4 md:w-[55%] w-3/4 m-auto">
-                    <h1 className="lg:text-8xl text-4xl font-semibold mb-4">Kedus <span className="text-[#EED590]">Bible</span></h1>
+                    <h1 className="xl:text-8xl lg:text-6xl text-4xl font-semibold mb-4">Kedus <span className="text-[#EED590]">Bible</span></h1>
                     <p className="leading-7 text-lg mb-5">Enrich Your Spiritual Journey with the Kedus Bible Access the Bible in multiple languages, read daily devotionals, and take notes</p>
                 </div>
                 <div className="flex flex-row items-center justify-center lg:space-x-6 space-x-2">
