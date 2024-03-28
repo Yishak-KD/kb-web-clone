@@ -63,7 +63,7 @@ const Contact = () => {
             <img src="/images/ellipse7.svg" alt="" className="absolute top-[-80px] right-0 z-0 opacity-90" />
             <div className="relative lg:text-center xl:w-7/12 lg:w-4/5 w-full lg:p-32 p-8 mx-auto">
                 <PageHeader bigTitle={'Connect with Kedus Bible'} smallTitle={'CONTACT US'} />
-                <p>We'd love to hear from you! Whether you have a question, a comment, or a suggestion for improvement, we're here to listen.</p>
+                <p>{`We'd love to hear from you! Whether you have a question, a comment, or a suggestion for improvement, we're here to listen.`}</p>
             </div>
 
             <div className="relative lg:grid lg:grid-cols-2 xl:w-4/5 w-full mx-auto flex flex-col xl:gap-20 lg:gap-10">
