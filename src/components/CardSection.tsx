@@ -19,23 +19,21 @@ interface CardItemProps {
 const SocialMediasData: SocialMediaItems[] = [
     {
         id: 1,
-        image: '/images/twitter3.svg',
-        width: 30
+        image: '/images/facebook3.svg',
+        width: 15,
+        link: 'https://facebook.com/kedusbible'
     },
     {
         id: 2,
-        image: '/images/facebook3.svg',
-        width: 20
+        image: '/images/instagram3.svg',
+        width: 20,
+        link: 'https://www.instagram.com/kedus_bible'
     },
     {
         id: 3,
-        image: '/images/instagram3.svg',
-        width: 30
-    },
-    {
-        id: 4,
         image: '/images/telegram3.svg',
-        width: 30
+        width: 25,
+        link: 'https://facebook.com/kedusbible'
     },
 ]
 
@@ -60,7 +58,7 @@ const CardSection = ({ items }: CardItemProps) => {
                         {(item.id === 1 || item.id === 5) && (
                             <div className="lg:block mt-4 w-[100%]">
                                 <div className={`flex space-x-6 justify-center h-28 rounded-[30px] ${item.id === 1 ? 'bg-black' : 'bg-[#A2CAEB]'}`}>
-                                    {item.footerItem && <SocialMedias data={SocialMediasData}/>}
+                                    {item.footerItem && <SocialMedias data={SocialMediasData} />}
                                 </div>
                             </div>
                         )}

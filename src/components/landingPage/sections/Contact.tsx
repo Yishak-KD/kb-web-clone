@@ -12,23 +12,21 @@ import SocialMedias, { SocialMediaItems } from "@/uicomponents/SocialMedias"
 const SocialMediasData: SocialMediaItems[] = [
     {
         id: 1,
-        image: '/images/twitter.svg',
-        width: 25
+        image: '/images/facebook.svg',
+        width: 10,
+        link: 'https://facebook.com/kedusbible'
     },
     {
         id: 2,
-        image: '/images/facebook.svg',
-        width: 10
+        image: '/images/instagram.svg',
+        width: 20,
+        link: 'https://www.instagram.com/kedus_bible'
     },
     {
         id: 3,
-        image: '/images/instagram.svg',
-        width: 20
-    },
-    {
-        id: 4,
         image: '/images/telegram.svg',
-        width: 25
+        width: 20,
+        link: 'https://t.me/kedusbible'
     },
 ]
 
