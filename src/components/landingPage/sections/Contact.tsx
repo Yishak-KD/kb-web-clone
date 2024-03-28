@@ -62,14 +62,14 @@ const Contact = () => {
         <div className="w-full relative lg:my-0 my-20" id="contactUs">
             <img src="/images/ellipse7.svg" alt="" className="absolute top-[-80px] right-0 z-0 opacity-90" />
             <div className="relative lg:text-center xl:w-7/12 lg:w-4/5 w-full lg:p-32 p-8 mx-auto">
-                <PageHeader bigTitle={'Feel Free To Contact Us!'} smallTitle={'LOREM IPSUM'} />
-                <p>Lorem ipsum dolor sit amet consectetur. Mus amet tristique vestibulum nisi sit. Donec sit nibh risus aliquet accumsan egestas egestas.</p>
+                <PageHeader bigTitle={'Connect with Kedus Bible'} smallTitle={'CONTACT US'} />
+                <p>We'd love to hear from you! Whether you have a question, a comment, or a suggestion for improvement, we're here to listen.</p>
             </div>
 
             <div className="relative lg:grid lg:grid-cols-2 xl:w-4/5 w-full mx-auto flex flex-col xl:gap-20 lg:gap-10">
                 <div className="flex flex-col items-start lg:pl-20 pl-8 col-span-1">
                     <h1 className="text-2xl font-semibold mb-6">General Inquiries</h1>
-                    <p className="lg:max-w-[80%] max-w-[90%] mb-6">Lorem ipsum dolor sit amet consectetur. Sed volutpat facilisis facilisis sodales convallis in.</p>
+                    <p className="lg:max-w-[80%] max-w-[90%] mb-6">Feel free to contact us using one of the methods below:</p>
                     <p className="underline font-bold text-base mb-6">info@kedusbible.com</p>
                     <div className="xl:lg:block hidden">
                         {/* Section 4 */}

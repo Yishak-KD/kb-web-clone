@@ -30,7 +30,7 @@ const Footer = () => {
         { href: "/", name: "HOME" },
         { href: "/#features", name: "FEATURES" },
         { href: "/#benefits", name: "BENEFITS" },
-        { href: "/#donatNow", name: "DONATE NOW" },
+        { href: "/#donateNow", name: "DONATE NOW" },
         { href: "/#contactUs", name: "CONTACT US" },
     ];
 
@@ -89,7 +89,7 @@ const Footer = () => {
                         <h1 className="text-2xl font-medium w-1/3">Kedus Bible</h1>
                     </div>
                     <p className="text-slate-700 text-base mt-4 lg:max-w-[60%]">
-                        Lorem ipsum dolor sit amet consectetur. Sed volutpat facilisis facilisis sodales convallis in.
+                    Ensuring the transformative power of the scripture is within reach for all.
                     </p>
                 </div>
                 <div className="flex flex-col">
