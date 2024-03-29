@@ -142,7 +142,7 @@ const Footer = () => {
                                 setError(!inputValue);
                                 setEmail(inputValue);
                             }}
-                            className={`bg-[#E3E3E390]   outline-none text-lg text-slate-700 py-2 px-4  ${error && "border-red-500"
+                            className={`bg-[#E3E3E390] outline-none text-lg text-slate-700 py-2 px-4  ${error && "border-red-500"
                                 }`}
                             style={{ height: "50px", borderRadius: "5px",width:'calc(100% - 50px)' }}
                         />
@@ -171,11 +171,11 @@ const Footer = () => {
                 </div>
             </div>
             <div className="flex text-center text-sm justify-center mb-6">
-                <Link href={'https://kedusbible.com/termsofuse'} target="_blank">
+                <Link href={'/termsofuse'}>
                     <p>Terms of Use</p>
                 </Link>
                 <span className="mx-2">|</span>
-                <Link href={'https://kedusbible.com/privacy'} target="_blank">
+                <Link href={'/privacy'}>
                     <p>Privacy Policy</p>
                 </Link>
             </div>

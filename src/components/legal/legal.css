@@ -1,0 +1,18 @@
+.terms-wrapper {
+    padding: 100px 0px 100px;
+  }
+  
+  .terms-content h2 {
+    margin-bottom: 70px;
+  }
+  
+  .terms-content p {
+    margin-bottom: 30px;
+    font-size: 16px;
+  }
+  
+  li {
+    font-size: 16px;
+    margin-left: 10px;
+    list-style-type: circle;
+  }

@@ -38,8 +38,6 @@ const AppDeletionForm = () => {
                 setLoading(true)
 
                 const response = await axios.post('/api/appDeletionRequest', data)
-                console.log('=================================')
-                console.log(response)
                 if (isSuccessfullStatus(response) && response) {
                     reset();
                     setShowNotification(true);
@@ -66,7 +64,7 @@ const AppDeletionForm = () => {
                     <Box sx={{
                         position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', bgcolor: 'background.paper', borderRadius: '8px', boxShadow: 24, padding: '65px 30px', width: 600, outline: 'none',
                         '@media screen and (max-width: 760px)': {
-                            padding: '100px 20px',
+                            padding: '20px 20px',
                             width: '100vw',
                             height: '100vh',
                             borderRadius: 0
