@@ -1,6 +1,6 @@
 import React from 'react';
 // import TermsOfUse from './TermsOfUse';
-import PrivacyPolicy from './PrivacyPolicy';
+// import PrivacyPolicy from './PrivacyPolicy';
 import './legal.css';
 
 interface IProps {
@@ -13,7 +13,7 @@ const Legal: React.FC<IProps> = ({ title }) => {
       case 'Terms of Use':
         // return <TermsOfUse />;
       case 'Privacy Policy':
-        return <PrivacyPolicy />;
+        // return <PrivacyPolicy />;
       default:
         return null;
     }
