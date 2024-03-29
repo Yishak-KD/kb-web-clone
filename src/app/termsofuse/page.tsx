@@ -1,7 +1,7 @@
-import TermsOfUse from "@/components/legal/TermsOfUse"
+// import TermsOfUse from "@/components/legal/TermsOfUse"
 
-const Terms = () => {
-    return (<TermsOfUse />)
-}
+// const Terms = () => {
+//     return (<TermsOfUse />)
+// }
 
-export default Terms
+// export default Terms
