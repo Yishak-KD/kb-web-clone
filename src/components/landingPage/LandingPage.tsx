@@ -7,7 +7,7 @@ import Contact from "./sections/Contact"
 import DailyInspirations from "./sections/DailyInspirations"
 import Donate from "./sections/Donate"
 import ExploreScripture from "./sections/ExploreScripture"
-import HomeSection from "./sections/HomeSection"
+import HeroSection from "./sections/HeroSection"
 import ImmerseYourself from "./sections/ImmerseYourself"
 import MakeBibleYourOwn from "./sections/MakeBibleYourOwn"
 import UncoverHidden from "./sections/UncoverHidden"
@@ -20,7 +20,7 @@ const LandingPage = () => {
             </div>
            <div className="z-10 relative">
             <Navigation />
-            <HomeSection />
+            <HeroSection />
             <About />
             <ExploreScripture />
             <ImmerseYourself />

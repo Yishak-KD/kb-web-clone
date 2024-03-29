@@ -8,6 +8,7 @@ import Snackbar from "@/uicomponents/SnackBar"
 import { useState } from "react"
 import { EMAIL_REGEX } from "../../../../constants/constants"
 import SocialMedias, { SocialMediaItems } from "@/uicomponents/SocialMedias"
+import { QRCodeSVG } from 'qrcode.react';
 
 const SocialMediasData: SocialMediaItems[] = [
     {
@@ -77,8 +78,38 @@ const Contact = () => {
                         </div>
                         {/* Section 5 */}
                         <div className="flex mx-auto lg:gap-10">
-                            <Image src={'/images/playstoreqr.svg'} height={100} width={100} alt="" className="mx-auto lg:h-full h-2/4 lg:w-full w-[35%]" />
-                            <Image src={'/images/appleqr.svg'} height={100} width={100} alt="" className="mx-auto lg:h-full h-2/4 lg:w-full w-[35%]" />
+                            <QRCodeSVG
+                                value={"https://play.google.com/store/apps/details?id=com.aevue.kedus_bible_flutter"}
+                                size={200}
+                                bgColor={"#ffffff"}
+                                fgColor={"#000000"}
+                                level={"L"}
+                                includeMargin={false}
+                                imageSettings={{
+                                    src: "/images/playstoreicon.svg",
+                                    x: undefined,
+                                    y: undefined,
+                                    height: 40,
+                                    width: 40,
+                                    excavate: true,
+                                }}
+                            />
+                            <QRCodeSVG
+                                value={"https://apps.apple.com/us/app/id1501044432"}
+                                size={200}
+                                bgColor={"#ffffff"}
+                                fgColor={"#000000"}
+                                level={"L"}
+                                includeMargin={false}
+                                imageSettings={{
+                                    src: "/images/appstoreicon.svg",
+                                    x: undefined,
+                                    y: undefined,
+                                    height: 40,
+                                    width: 40,
+                                    excavate: true,
+                                }}
+                            />
                         </div>
                     </div>
                 </div>

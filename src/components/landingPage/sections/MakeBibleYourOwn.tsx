@@ -10,7 +10,7 @@ const MakeBibleYourOwn = () => {
             </div>
 
             {/* Section 2 */}
-            <div className="col-span-1 flex flex-col">
+            <div className="col-span-1 flex flex-col my-auto">
                 <div className="lg:w-[70%]">
                     <PageHeader bigTitle={'Make the Bible Your Own'} smallTitle={'HIGHLIGHTS AND NOTE TAKING'} />
                 </div>
