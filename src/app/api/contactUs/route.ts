@@ -1,6 +1,8 @@
 import prisma from '../../../../lib/prisma';
-import { ContactUs } from '@prisma/client'
 import { NextRequest, NextResponse } from 'next/server';
+import Result from '../../../../util/Result';
+
+export type ContactUsResponse = Result<string>
 
 export async function POST(
     req: NextRequest
@@ -19,7 +21,7 @@ export async function POST(
     }
 
     try {
-        const contactUs: ContactUs = await prisma.contactUs.create({
+        await prisma.contactUs.create({
             data: {
                 fullName,
                 email,
@@ -30,7 +32,7 @@ export async function POST(
         // Return the success response as JSON
         return NextResponse.json({ 
             success: true,
-            value: contactUs
+            value: 'success'
          }, { status: 200 })
     } catch (error: any) {
         console.error(error)

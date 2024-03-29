@@ -70,12 +70,12 @@ const Contact = () => {
                     <h1 className="text-2xl font-semibold mb-6">General Inquiries</h1>
                     <p className="lg:max-w-[80%] max-w-[90%] mb-6">Feel free to contact us using one of the methods below:</p>
                     <p className="underline font-bold text-base mb-6">info@kedusbible.com</p>
-                    <div className="xl:lg:block hidden">
-                        {/* Section 4 */}
-                        <div className="flex flex-row space-x-5 mb-10">
-                            <h1 className="font-semibold text-lg">Follow us</h1>
-                            <SocialMedias data={SocialMediasData} />
-                        </div>
+
+                    <div className="flex flex-row space-x-5 mb-10">
+                        <h1 className="font-semibold text-lg">Follow us</h1>
+                        <SocialMedias data={SocialMediasData} />
+                    </div>
+                    <div className="lg:block hidden">
                         {/* Section 5 */}
                         <div className="flex mx-auto lg:gap-10">
                             <QRCodeSVG
@@ -89,8 +89,8 @@ const Contact = () => {
                                     src: "/images/playstoreicon.svg",
                                     x: undefined,
                                     y: undefined,
-                                    height: 40,
-                                    width: 40,
+                                    height: 55,
+                                    width: 55,
                                     excavate: true,
                                 }}
                             />
@@ -105,8 +105,8 @@ const Contact = () => {
                                     src: "/images/appstoreicon.svg",
                                     x: undefined,
                                     y: undefined,
-                                    height: 40,
-                                    width: 40,
+                                    height: 55,
+                                    width: 55,
                                     excavate: true,
                                 }}
                             />
@@ -115,6 +115,7 @@ const Contact = () => {
                 </div>
                 <div className="col-span-1 lg:px-0 px-8">
                     <form onSubmit={handleSubmit(handleFormSubmit)}>
+                        <p className="font-semibold text-lg">Full Name</p>
                         <TextField
                             {...register('fullName', {
                                 required: 'Full Name is required',
@@ -128,6 +129,7 @@ const Contact = () => {
                                 (errors.fullName.message as string)
                             }
                             className="py-3 mb-4 text-black outline-none lg:w-[90%] w-full" />
+                        <p className="font-semibold text-lg">Email</p>
                         <TextField
                             {...register('email', {
                                 required: 'Email is required',
@@ -145,6 +147,7 @@ const Contact = () => {
                                 (errors.email.message as string)
                             }
                             className="py-3 mb-4 text-black outline-none lg:w-[90%] w-full" />
+                        <p className="font-semibold text-lg">Message</p>
                         <TextField
                             multiline
                             rows={8}
@@ -184,23 +187,20 @@ const Contact = () => {
                             )}
                         </button>
                     </form>
-                    <Snackbar
-                        open={showNotification}
-                        text="Successfully Sent"
-                        onClose={() => setShowNotification(false)}
-                        type="success"
-                    />
-                </div>
-                <div className="lg:xl:hidden block px-20">
-                    {/* Section 4 */}
-                    <div className="flex flex-row space-x-5 lg:px-8 px-0 my-10">
-                        <h1 className="font-semibold text-lg">Follow us</h1>
-                        <SocialMedias data={SocialMediasData} />
+                    <div>
+                        <Snackbar
+                            open={showNotification}
+                            text="Successfully Sent"
+                            onClose={() => setShowNotification(false)}
+                            type="success"
+                        />
                     </div>
+                </div>
+                <div className="lg:hidden block mt-10 mx-auto px-20">
                     {/* Section 5 */}
                     <div className="flex gap-5">
-                        <Image src={'/images/playstoreqr.svg'} height={100} width={100} alt="" className="h-full w-[60%]" />
-                        <Image src={'/images/appleqr.svg'} height={100} width={100} alt="" className="h-full w-[60%]" />
+                        <Image src={'/images/playstoreqr.svg'} height={100} width={100} alt="" className="h-full lg:w-[60%]" />
+                        <Image src={'/images/appleqr.svg'} height={100} width={100} alt="" className="h-full lg:w-[60%]" />
                     </div>
                 </div>
             </div>
