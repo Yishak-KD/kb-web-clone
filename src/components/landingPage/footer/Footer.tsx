@@ -97,7 +97,7 @@ const Footer = () => {
                     {quickLinks.map((item) => (
                         <Link
                             key={item.name}
-                            className="text-base pl-1 mt-3"
+                            className="text-base pl-1 mt-3 w-fit"
                             href={item.href}
                         >
                             {item.name}
