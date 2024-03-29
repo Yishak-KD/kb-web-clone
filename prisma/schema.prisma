@@ -37,8 +37,8 @@ model Subscriber {
 
 model AppDeletionRequest {
   id        Int      @id @default(autoincrement())
-  fullName  String   @unique
-  email     String   @unique
+  fullName  String
+  email     String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

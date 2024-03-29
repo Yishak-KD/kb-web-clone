@@ -16,7 +16,7 @@ const Snackbar = ({
     type,
     autoHideDuration = 3000,
     onClose,
-    anchorOrigin = { vertical: 'top', horizontal: 'center' },
+    anchorOrigin = { vertical: 'top', horizontal: 'right' },
 }: SnackbarProps) => {
     return (
         <MUISnackbar

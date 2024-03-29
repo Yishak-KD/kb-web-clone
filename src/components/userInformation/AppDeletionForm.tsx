@@ -6,7 +6,7 @@ import { EMAIL_REGEX } from '../../../constants/constants'
 import { useState } from 'react'
 import Snackbar from '@/uicomponents/SnackBar'
 import { AlertColor } from '@mui/material/Alert'
-import { CircularProgress } from '@mui/material'
+import { Box, CircularProgress, Modal } from '@mui/material'
 
 const AppDeletionForm = () => {
     const {
@@ -20,6 +20,11 @@ const AppDeletionForm = () => {
     const [showType, setShowType] = useState<AlertColor | undefined>()
     const [showSuccessMessage, setShowSuccessMessage] = useState<boolean>(false)
     const [loading, setLoading] = useState<boolean>(false)
+    const [modalOpen, setModalOpen] = useState(true);
+
+    const handleModalOpen = () => {
+        setModalOpen(true);
+    };
 
     const showSnackBar = ({ type, text }: { text: string, type: AlertColor | undefined }) => {
         setShowNotification(true)
@@ -31,8 +36,10 @@ const AppDeletionForm = () => {
         if (EMAIL_REGEX.test(data.email)) {
             try {
                 setLoading(true)
-                const response = await axios.post('/api/appDeletionRequest', data)
 
+                const response = await axios.post('/api/appDeletionRequest', data)
+                console.log('=================================')
+                console.log(response)
                 if (isSuccessfullStatus(response) && response) {
                     reset();
                     setShowNotification(true);
@@ -40,8 +47,8 @@ const AppDeletionForm = () => {
                 }
             } catch (error: any) {
                 console.error('An error occurred while submitting the form.')
-                if (error.response.data) {
-                    showSnackBar({ type: 'error', text: error.response.data.message.message })
+                if (!error.response.data.success) {
+                    showSnackBar({ type: 'error', text: error.response.data.message })
                 }
             }
         }
@@ -55,13 +62,23 @@ const AppDeletionForm = () => {
         <div id="contact" className='mt-32 lg:w-2/4 w-full mx-auto'>
 
             {!showSuccessMessage ? (
-                <div className='mt-10 xl:lg:w-3/4 w-full lg:px-10 shadow-2xl my-auto py-20 h-full px-8 mx-auto'>
-                    <div className='text-center text-2xl font-semibold mb-6'>
-                        <h1>Submission of User Information Deletion Request</h1>
-                    </div>
-                    <div>
+                <Modal open={modalOpen} onClose={handleModalOpen}>
+                    <Box sx={{
+                        position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', bgcolor: 'background.paper', borderRadius: '8px', boxShadow: 24, padding: '65px 30px', width: 600, outline: 'none',
+                        '@media screen and (max-width: 760px)': {
+                            padding: '100px 20px',
+                            width: '100vw',
+                            height: '100vh',
+                            borderRadius: 0
+                        }
+                    }}>
+                        <div>
+                            <h2 className="font-semibold text-xl mb-4">Request to delete Kedus Bible account and data</h2>
+                            <p className="text-base mb-4">By submitting a request to delete your Kedus Bible account and associated data you are are acknowledging that all information related to your account will be permanently removed from our database. This includes personal details, saved preferences, and any other data associated with your account. Once the deletion process is complete, it cannot be undone.</p>
+                        </div>
                         <form onSubmit={handleSubmit(handleFormSubmit)}>
                             <div>
+                                <p className="font-semibold mb-3 text-lg">Name</p>
                                 <TextField
                                     type="text"
                                     {...register('fullName', {
@@ -93,6 +110,7 @@ const AppDeletionForm = () => {
 
                             </div>
                             <div>
+                                <p className="font-semibold mb-3 text-lg">Address</p>
                                 <TextField
                                     type="text"
                                     {...register('email', {
@@ -124,45 +142,51 @@ const AppDeletionForm = () => {
                                 />
                             </div>
                             <button className="mt-6 bg-red-500 text-white px-20 py-2 w-full lg:text-start justify-center rounded-3xl flex mx-auto">
-                            {loading ? (
-                                <>
-                                    <span className="mr-2">DELETE</span>
-                                    <CircularProgress
-                                        style={{ color: 'white' }}
-                                        size={24}
-                                    />
-                                </>
-                            ) : (
-                                'DELETE'
-                            )}
+                                {loading ? (
+                                    <>
+                                        <span className="mr-2">DELETE</span>
+                                        <CircularProgress
+                                            style={{ color: 'white' }}
+                                            size={24}
+                                        />
+                                    </>
+                                ) : (
+                                    'DELETE'
+                                )}
                             </button>
                         </form>
-                        {/* {showNotification && (
-                        <div className="text-center mt-10 lg:w-2/4 w-full lg:px-0 px-8 mx-auto">
-                            <h2 className="text-xl font-semibold">
-                                We have received your request.
-                            </h2>
-                        </div>
-                    )} */}
                         <Snackbar
                             open={showNotification}
                             text={showText}
                             onClose={() => setShowNotification(false)}
                             type={showType}
                         />
-                    </div>
-                </div>
+                    </Box>
+                </Modal>
             ) : (
-                <div className="mt-10 w-full mx-auto">
-                    <div className="text-center mt-10 w-full lg:px-0 px-8 mx-auto">
-                        <h2 className="text-2xl font-semibold text-green-600">
-                            Thank you for providing your information!
-                        </h2>
-                        <p className="mt-2 text-lg text-gray-800">
-                            Your request has been successfully received.
-                        </p>
-                    </div>
-                </div>
+                <Modal open={modalOpen} onClose={handleModalOpen}>
+                    <Box sx={{
+                        position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', bgcolor: 'background.paper', borderRadius: '8px', boxShadow: 24, padding: '65px 30px', width: 600, outline: 'none',
+                        '@media screen and (max-width: 760px)': {
+                            padding: '100px 20px',
+                            width: '100vw',
+                            height: '100vh',
+                            borderRadius: 0
+                        }
+                    }}>
+                        <div className="w-full mx-auto py-10">
+                            <div className="text-center w-full lg:px-0 px-8 mx-auto">
+                                <h2 className="text-2xl font-semibold text-black">
+                                    Thank you for providing your information!
+                                </h2>
+                                <p className="mt-2 text-lg text-gray-800">
+                                    Your request has been successfully received.
+                                </p>
+                            </div>
+                        </div>
+                    </Box>
+                </Modal>
+
             )}
 
         </div>

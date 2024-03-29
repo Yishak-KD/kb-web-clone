@@ -1,5 +1,4 @@
 import prisma from '../../../../lib/prisma';
-import { AppDeletionRequest } from '@prisma/client'
 import axios from 'axios';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -11,14 +10,14 @@ export async function POST(
         email,
     } = await req.json()
 
-
     try {
         const response = await axios.post('https://us-central1-kedus-bible-20.cloudfunctions.net/lib-api/deleteUserData', {
             email: email,
             fullName: fullName
         });
+        
         if (response.data.success) {
-            const appDeletionRequest: AppDeletionRequest = await prisma.appDeletionRequest.create({
+            await prisma.appDeletionRequest.create({
                 data: {
                     fullName,
                     email
@@ -26,13 +25,14 @@ export async function POST(
             })
 
             // Return the success response as JSON
-            return NextResponse.json({ 
+            return NextResponse.json({
                 success: true,
-                value: appDeletionRequest
-             }, { status: 200 })
+                value: 'success'
+            }, { status: 200 })
         }
 
         return NextResponse.json({ message: response.data.message }, { status: response.status })
+
 
     } catch (error: any) {
         console.error({ error })
