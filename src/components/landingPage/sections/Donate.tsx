@@ -187,10 +187,11 @@ const Donate = () => {
                                 '@media screen and (max-width: 760px)': {
                                     padding: '100px 20px',
                                     width: '100vw',
-                                    height: '100vh'
+                                    height: '100vh',
+                                    borderRadius: 0
                                 }
                             }}>
-                                <div className="relative top-[-25px] flex float-end hover:cursor-pointer w-fit" style={{ marginTop: '-20px' }} onClick={handleModalClose}>
+                                <div className="relative xl:lg:top-[-25px] top-[-50px] flex float-end hover:cursor-pointer w-fit" style={{ marginTop: '-20px' }} onClick={handleModalClose}>
                                     <Close />
                                 </div>
                                 <div>
