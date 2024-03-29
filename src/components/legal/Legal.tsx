@@ -1,5 +1,5 @@
 import React from 'react';
-import TermsOfUse from './TermsOfUse';
+// import TermsOfUse from './TermsOfUse';
 import PrivacyPolicy from './PrivacyPolicy';
 import './legal.css';
 
@@ -11,7 +11,7 @@ const Legal: React.FC<IProps> = ({ title }) => {
   const renderDocument = () => {
     switch (title) {
       case 'Terms of Use':
-        return <TermsOfUse />;
+        // return <TermsOfUse />;
       case 'Privacy Policy':
         return <PrivacyPolicy />;
       default:

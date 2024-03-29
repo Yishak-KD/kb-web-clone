@@ -235,7 +235,7 @@ const PrivacyPolicy = () => {
       <p>
         Our ability to provide different versions of the Bible in different languages
         is a result of and subject to agreements among us and certain Bible societies
-        and publishers, which we’ll call "Holy Bible Providers.” The License
+        and publishers, which we&quot;ll call "Holy Bible Providers.” The License
         Agreements we have with some Holy Bible Providers only allow us to provide
         Kedus Bible users the ability to download certain Bible texts for offline use
         if we provide Holy Bible Providers with the User’s name, email address, and
