@@ -1,14 +1,16 @@
 import Image from "next/image"
 import PageHeader from "../PageHeader"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import axios from "axios"
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { CircularProgress } from "@mui/material";
 import { Close } from "@mui/icons-material";
-import { useForm } from "react-hook-form";
+import { FieldValue, FieldValues, useForm } from "react-hook-form";
 import { EMAIL_REGEX } from "../../../../constants/constants";
+import { parseArgs } from "util";
+import DonateModal from "./DonateModal";
 
 const Donate = () => {
     const [donationAmount, setDonationAmount] = useState<string>("$10")
@@ -23,7 +25,16 @@ const Donate = () => {
         handleSubmit,
         formState: { errors },
         reset,
-    } = useForm()
+        setValue,
+        clearErrors
+    } = useForm({
+        defaultValues: {
+            donationAmount: '10',
+            donationFrequency: 'Monthly',
+            paymentMethod: 'Chapa',
+           
+        }
+    })
 
     const handleModalOpen = () => {
         if (donationAmount && paymentMethod && donationFrequency) {
@@ -56,44 +67,33 @@ const Donate = () => {
         setDonationFrequency(event.target.value);
     };
 
-    const handleFormSubmit = async () => {
-        if (donationAmount && paymentMethod && donationFrequency) {
-            try {
-                setLoading(true)
-                const response = await axios.post("/api/donations", {
-                    donationAmount,
-                    paymentMethod,
-                    donationFrequency,
-                    fullName,
-                    email
-                });
+    const handleFormSubmit = async (values: FieldValues) => {
+        try {
+            setLoading(true)
+            const response = await axios.post("/api/donations", { ...values, donationAmount: parseInt(values.donationAmount) });
 
-                if (response.status === 200) {
-                    setModalOpen(false)
-                    setFullName("")
-                    setEmail("")
-                    reset()
-                    window.open("https://www.paypal.com/paypalme/KedusBible?v=1&utm_source=unp&utm_medium=email&utm_campaign=RT000269&utm_unptid=1d173892-5dae-11ee-a598-3cecef6b0210&ppid=RT000269&cnac=US&rsta=en_US%28en-US%29&cust=ZFGLH5CNR7VSG&unptid=1d173892-5dae-11ee-a598-3cecef6b0210&calc=f4767401b9a86&unp_tpcid=ppme-social-user-profile-created&page=main%3Aemail%3ART000269&pgrp=main%3Aemail&e=cl&mchn=em&s=ci&mail=sys&appVersion=1.205.0&xt=104038%2C124817", "_blank");
-                } else {
-                    console.error("Error submitting data");
-                }
-            } catch (error) {
-                if (axios.isAxiosError(error) && error.response?.data?.error) {
-                    console.warn(error.response.data.error);
-                } else {
-                    console.error(error);
-                    console.warn("An error occured while submitting the form");
-                }
+            if (response.status === 200) {
+                setModalOpen(false)
+                reset()
+                window.open("https://www.paypal.com/paypalme/KedusBible?v=1&utm_source=unp&utm_medium=email&utm_campaign=RT000269&utm_unptid=1d173892-5dae-11ee-a598-3cecef6b0210&ppid=RT000269&cnac=US&rsta=en_US%28en-US%29&cust=ZFGLH5CNR7VSG&unptid=1d173892-5dae-11ee-a598-3cecef6b0210&calc=f4767401b9a86&unp_tpcid=ppme-social-user-profile-created&page=main%3Aemail%3ART000269&pgrp=main%3Aemail&e=cl&mchn=em&s=ci&mail=sys&appVersion=1.205.0&xt=104038%2C124817", "_blank");
+            } else {
+                console.error("Error submitting data");
             }
-        } else {
-            console.warn("All fields are required");
+        } catch (error) {
+            if (axios.isAxiosError(error) && error.response?.data?.error) {
+                console.warn(error.response.data.error);
+            } else {
+                console.error(error);
+                console.warn("An error occured while submitting the form");
+            }
         }
+
         setLoading(false)
     };
 
 
     return (
-        <div className="bg-[#F6F6F6]" id="donateNow">
+        <div className="bg-[#F6F6F6] pb-20" id="donateNow">
             <div className="lg:text-center xl:w-7/12 lg:w-4/5 lg:p-32 p-8 mx-auto lg:mb-0 mb-6">
                 <PageHeader bigTitle={'Donate Now'} smallTitle={'SUPPORT OUR WORK'} />
                 <p>{`We are a team passionate about making the Bible accessible to everyone digitally, fostering a deeper connection with the scriptures and enriching spiritual journeys. Your generous donation can make a real difference in achieving this mission. Here's how your contribution can impact`}</p>
@@ -127,58 +127,135 @@ const Donate = () => {
                 </div>
             </div>
 
-            <div className="relative lg:grid lg:grid-cols-2 xl:w-4/5 mx-auto shadow-lg lg:px-20 px-8 py-20 mt-20">
-                <div className="col-span-1">
-                    <img src="/images/ellipse6.svg" alt="" className="absolute top-20 left-[-200px] z-0 opacity-90" />
-                    <h1 className="text-xl font-semibold lg:mb-16 mb-10">Choose a donation amount</h1>
-                    <div className="flex lg:space-x-44 space-x-28">
-                        <div className="z-10 lg:mb-16 mb-8 flex flex-row lg:space-x-6 space-x-4 items-center justify-start">
-                            <input type="radio" name="donationAmount" value="$10" onChange={handleAmountChange} style={{ width: '20px', height: '20px' }} />
-                            <h4 className="font-semibold">$ 10</h4>
-                        </div>
-                        <div className="relative lg:mb-16 mb-8 flex flex-row lg:space-x-6 space-x-4 items-center justify-start">
-                            <input type="radio" name="donationAmount" value="$15" onChange={handleAmountChange} style={{ width: '20px', height: '20px' }} />
-                            <h4 className="font-semibold">$ 15</h4>
-                        </div>
-                    </div>
-                    <div className="flex lg:space-x-44 space-x-28">
-                        <div className="relative mb-10 flex flex-row lg:space-x-6 space-x-4 items-center justify-start">
-                            <input type="radio" name="donationAmount" value="$25" onChange={handleAmountChange} style={{ width: '20px', height: '20px' }} />
-                            <h4 className="font-semibold">$ 25</h4>
-                        </div>
-                        <div className="relative mb-10 flex flex-row lg:space-x-6 space-x-4 items-center justify-start">
-                            <input type="radio" name="donationAmount" value="$50" onChange={handleAmountChange} style={{ width: '20px', height: '20px' }} />
-                            <h4 className="font-semibold">$ 50</h4>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-span-1 relative">
-                    <h1 className="text-xl font-semibold mb-16">Desired payment method</h1>
-                    <div className="mb-10 flex flex-row space-x-6 items-center justify-start">
-                        <input type="radio" name="paymentMethod" value="chapa" onChange={handlePaymentChange} style={{ width: '20px', height: '20px' }} />
-                        <Image src={'/images/chapa.svg'} height={150} width={150} alt="" />
-                    </div>
-                    <div className="mb-10 flex flex-row space-x-6 items-center justify-start">
-                        <input type="radio" name="paymentMethod" value="subsplash" onChange={handlePaymentChange} style={{ width: '20px', height: '20px' }} />
-                        <Image src={'/images/subsplash.svg'} height={150} width={150} alt="" />
-                    </div>
-                    <div className="flex flex-row space-x-6 items-center justify-start mb-16">
-                        <input type="radio" name="paymentMethod" value="paypal" onChange={handlePaymentChange} style={{ width: '20px', height: '20px' }} />
-                        <Image src={'/images/paypal.svg'} height={150} width={150} alt="" />
-                    </div>
-                    <div>
-                        <h1 className="text-xl font-semibold mb-8">Choose a donation frequency</h1>
-                        <div className="flex space-x-20">
-                            <div className="z-10 mb-16 flex flex-row space-x-4 items-center justify-start">
-                                <input type="radio" name="donationFrequency" value="Monthly" onChange={handleFrequencyChange} style={{ width: '20px', height: '20px' }} />
-                                <h4>Monthly</h4>
+            <form onSubmit={handleSubmit(handleFormSubmit)}>
+                <div className="relative lg:grid lg:grid-cols-2 xl:w-4/5 mx-auto shadow-lg lg:px-20 px-8 py-20 mt-20">
+                    <div className="col-span-1">
+                        <img src="/images/ellipse6.svg" alt="" className="absolute top-20 left-[-200px] z-0 opacity-90" />
+                        <h1 className="text-xl font-semibold lg:mb-16 mb-10">Choose a donation amount</h1>
+                        <div className="flex lg:space-x-44 space-x-28">
+                            <div className="z-10 lg:mb-16 mb-8 flex lg:space-x-6 space-x-4 items-center justify-start">
+                                {/* <input type="radio" name="donationAmount" value="$10" onChange={handleAmountChange} style={{ width: '20px', height: '20px' }} /> */}
+                                <TextField fullWidth {...register('donationAmount')}
+                                    type="radio"
+                                    value={'10'}
+                                    className="mb-6" />
+                                <h4 className="font-semibold">$ 10</h4>
                             </div>
-                            <div className="z-10 mb-16 flex flex-row space-x-4 items-center justify-start">
-                                <input type="radio" name="donationFrequency" value="One Time" onChange={handleFrequencyChange} style={{ width: '20px', height: '20px' }} />
-                                <h4>One Time</h4>
+                            <div className="relative lg:mb-16 mb-8 flex flex-row lg:space-x-6 space-x-4 items-center justify-start">
+                                <TextField fullWidth {...register('donationAmount')}
+                                    type="radio"
+                                    value={'15'}
+                                    className="mb-6" />
+                                <h4 className="font-semibold">$ 15</h4>
                             </div>
                         </div>
-                        <button className="z-10 mt-[-18px] bg-black text-white px-14 py-2 lg:text-start justify-center rounded-3xl flex" onClick={handleModalOpen}>Donate Now</button>
+                        <div className="flex lg:space-x-44 space-x-28">
+                            <div className="relative mb-10 flex flex-row lg:space-x-6 space-x-4 items-center justify-start">
+                                <TextField fullWidth {...register('donationAmount')}
+                                    type="radio"
+                                    value={'25'}
+                                    className="mb-6" />
+                                <h4 className="font-semibold">$ 25</h4>
+                            </div>
+                            <div className="relative mb-10 flex flex-row lg:space-x-6 space-x-4 items-center justify-start">
+                                <TextField fullWidth {...register('donationAmount')}
+                                    type="radio"
+                                    value={'50'}
+                                    className="mb-6" />
+                                <h4 className="font-semibold">$ 50</h4>
+                            </div>
+                        </div>
+                        <div className="relative flex flex-row items-center mt-20 lg:mb-0 mb-10">
+                            <p className="text-xl font-semibold flex items-center justify-center my-auto">$</p>
+                            {/* <input type="text" placeholder="Write your own amount" className="outline-none border bg-transparent border-[#D9D9D9] placeholder:text-[#000000] pl-4 pr-10 py-2 rounded-md" /> */}
+                            <TextField fullWidth {...register('donationAmount')}
+                                type="text"
+                                placeholder="Write your own amount"
+                                onChange={(e: any) => {
+                                    setValue('donationAmount', e.target.value)
+                                }}
+                                style={{}}
+                                className="mb-6 pl-4 pr-52" />
+                        </div>
+                    </div>
+                    <div className="col-span-1 relative">
+                        <h1 className="text-xl font-semibold mb-16">Desired payment method</h1>
+                        <div className="mb-10 flex flex-row space-x-6 items-center justify-start">
+                            {/* <input type="radio" name="paymentMethod" value="chapa" onChange={handlePaymentChange} style={{ width: '20px', height: '20px' }} /> */}
+                            <TextField fullWidth {...register('paymentMethod', {
+                                required: 'Payment method is required',
+                            })}
+                                type="radio"
+                                value={'Chapa'}
+                                error={!!errors.paymentMethod}
+                                helperText={
+                                    errors.paymentMethod &&
+                                    (errors.paymentMethod.message as string)
+                                }
+                                className="mb-6" />
+                            <Image src={'/images/chapa.svg'} height={150} width={150} alt="" />
+                        </div>
+                        <div className="mb-10 flex flex-row space-x-6 items-center justify-start">
+                            <TextField fullWidth {...register('paymentMethod', {
+                                required: 'Payment method is required',
+                            })}
+                                type="radio"
+                                value={'subsplash'}
+                                error={!!errors.paymentMethod}
+                                helperText={
+                                    errors.paymentMethod &&
+                                    (errors.paymentMethod.message as string)
+                                }
+                                className="mb-6" />
+                            <Image src={'/images/subsplash.svg'} height={150} width={150} alt="" />
+                        </div>
+                        <div className="flex flex-row space-x-6 items-center justify-start mb-16">
+                            <TextField fullWidth {...register('paymentMethod', {
+                                required: 'Payment method is required',
+                            })}
+                                type="radio"
+                                value={'paypal'}
+                                error={!!errors.paymentMethod}
+                                helperText={
+                                    errors.paymentMethod &&
+                                    (errors.paymentMethod.message as string)
+                                }
+                                className="mb-6" />
+                            <Image src={'/images/paypal.svg'} height={150} width={150} alt="" />
+                        </div>
+                        <div>
+                            <h1 className="text-xl font-semibold mb-8">Choose a donation frequency</h1>
+                            <div className="flex space-x-20">
+                                <div className="z-10 mb-16 flex flex-row space-x-4 items-center justify-start">
+                                    <TextField fullWidth {...register('donationFrequency', {
+                                        required: 'Donation frequency is required',
+                                    })}
+                                        type="radio"
+                                        value={'Monthly'}
+                                        error={!!errors.donationFrequency}
+                                        helperText={
+                                            errors.donationFrequency &&
+                                            (errors.donationFrequency.message as string)
+                                        }
+                                        className="mb-6" />
+                                    <h4>Monthly</h4>
+                                </div>
+                                <div className="z-10 mb-16 flex flex-row space-x-4 items-center justify-start">
+                                    <TextField fullWidth {...register('donationFrequency', {
+                                        required: 'Donation frequency is required',
+                                    })}
+                                        type="radio"
+                                        value={'One Time'}
+                                        error={!!errors.donationFrequency}
+                                        helperText={
+                                            errors.donationFrequency &&
+                                            (errors.donationFrequency.message as string)
+                                        }
+                                        className="mb-6" />
+                                    <h4>One Time</h4>
+                                </div>
+                            </div>
+                            <button className="z-10 mt-[-18px] bg-black text-white px-14 py-2 lg:text-start justify-center rounded-3xl flex" onClick={handleModalOpen}>Donate Now</button>
 
                         {/* Modal */}
                         <Modal open={modalOpen} onClose={handleModalClose}>
@@ -256,10 +333,11 @@ const Donate = () => {
                         </Modal>
                     </div>
 
-                    <div>
+                        <div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     )
 }
