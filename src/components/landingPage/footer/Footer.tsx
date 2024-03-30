@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { EMAIL_REGEX } from "../../../../constants/constants";
 import axios from "axios";
 import { isSuccessfullStatus } from "../../../../util/ResponseValidation";
+import Snackbar from "@/uicomponents/SnackBar";
 
 const scrollToTop = () => {
     window.scrollTo({
@@ -17,6 +18,7 @@ const Footer = () => {
     const [email, setEmail] = useState("");
     const [isSubscribed, setIsSubscribed] = useState(false);
     const [error, setError] = useState(false);
+    const [showNotification, setShowNotification] = useState<boolean>(false)
 
     const InTouchComponent = ({
         image,
@@ -71,6 +73,7 @@ const Footer = () => {
                 if (isSuccessfullStatus(res)) {
                     setEmail("");
                     setIsSubscribed(false);
+                    setShowNotification(true)
                     setError(false);
                 }
             } catch (error) {
@@ -172,6 +175,11 @@ const Footer = () => {
                                 className="w-full"
                             />
                         </button>
+                        <Snackbar 
+                            open={showNotification} 
+                            text="Successfully subscribed"
+                            onClose={() => setShowNotification(false)}
+                            type="success"/>
                     </div>
                 </div>
             </div>

@@ -16,13 +16,12 @@ export async function POST(
         if (Boolean(emailExist)) {
             return NextResponse.json({ 
                 status: false,
-                error: 'Email Already Exist' })
+                error: 'Email already exist' })
         } else {
             const subscriber: Subscriber = await prisma.subscriber.create({
                 data: { email }
             })
 
-            // Return the success response as JSON
             return NextResponse.json({ 
                 success: true,
                 value: subscriber
@@ -32,7 +31,6 @@ export async function POST(
     } catch (error: any) {
         console.error(error)
 
-        // Return the error response as JSON
         return NextResponse.json({ 
             success: false,
             error: 'Failed to save donation intent' 

@@ -1,30 +1,29 @@
 import prisma from '../../../../lib/prisma';
-import { Donations } from '@prisma/client'
+import { Donation } from '@prisma/client'
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(
     req: NextRequest
 ) {
     const {
-        donationAmount,
-        donationFrequency,
+        amount,
+        frequency,
         paymentMethod,
         fullName,
         email
     } = await req.json()
 
     try {
-        const donations: Donations = await prisma.donations.create({
+        const donations: Donation = await prisma.donation.create({
             data: {
-                donationAmount,
-                donationFrequency,
+                amount,
+                frequency,
                 paymentMethod,
                 fullName,
                 email
             },
         })
 
-        // Return the success response as JSON
         return NextResponse.json({ 
             success: true,
             value: donations
@@ -32,7 +31,6 @@ export async function POST(
     } catch (error: any) {
         console.error(error)
 
-        // Return the error response as JSON
         return NextResponse.json({ 
             success: false,
             error: 'Failed to save donation intent' 
