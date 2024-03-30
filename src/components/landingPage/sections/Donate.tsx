@@ -1,103 +1,38 @@
 import Image from "next/image"
 import PageHeader from "../PageHeader"
-import { useEffect, useState } from "react"
-import axios from "axios"
-import Modal from "@mui/material/Modal";
-import Box from "@mui/material/Box";
+import { useState } from "react"
 import TextField from "@mui/material/TextField";
-import { CircularProgress } from "@mui/material";
-import { Close } from "@mui/icons-material";
-import { FieldValue, FieldValues, useForm } from "react-hook-form";
-import { EMAIL_REGEX } from "../../../../constants/constants";
-import { parseArgs } from "util";
-import DonateModal from "./DonateModal";
+import DonateSubmissionModal from "./DonateSubmissionModal";
+import { useForm } from "react-hook-form";
+
+type DonationPaymentMethod = 'chapa' | 'subsplash' | 'paypal'
+type DonationFrequency = 'monthly' | 'one time'
+
+export interface DonationPreference {
+    amount: string
+    paymentMethod: DonationPaymentMethod
+    frequency: DonationFrequency
+}
 
 const Donate = () => {
-    const [donationAmount, setDonationAmount] = useState<string>("$10")
-    const [paymentMethod, setPaymentMethod] = useState<string>("chapa")
-    const [donationFrequency, setDonationFrequency] = useState<string>("Monthly")
     const [modalOpen, setModalOpen] = useState(false);
-    const [fullName, setFullName] = useState("");
-    const [email, setEmail] = useState("");
-    const [loading, setLoading] = useState<boolean>(false)
+    const [donationPreference, setDonationPreference] = useState<DonationPreference | undefined>(undefined)
     const {
         register,
         handleSubmit,
-        formState: { errors },
-        reset,
         setValue,
-        clearErrors
-    } = useForm({
-        defaultValues: {
-            donationAmount: '10',
-            donationFrequency: 'Monthly',
-            paymentMethod: 'Chapa',
-            fullName: '',
-            email: ''
-        }
-    })
+    } = useForm<DonationPreference>()
 
-    const handleModalOpen = () => {
-        if (donationAmount && paymentMethod && donationFrequency) {
-            setModalOpen(true);
-        } else {
-            console.warn("All fields are required");
-        }
+    const handleFormSubmit = async (_donationPreference: DonationPreference) => {
+        setModalOpen(true)
+        setDonationPreference(_donationPreference)
     };
-
-    const handleModalClose = () => {
-        setModalOpen(false);
-    };
-
-    const handleFullNameChange = (event: any) => {
-        setFullName(event.target.value);
-    };
-
-    const handleEmailChange = (event: any) => {
-        setEmail(event.target.value);
-    };
-    const handleAmountChange = (event: any) => {
-        setDonationAmount(event.target.value);
-    };
-
-    const handlePaymentChange = (event: any) => {
-        setPaymentMethod(event.target.value);
-    };
-
-    const handleFrequencyChange = (event: any) => {
-        setDonationFrequency(event.target.value);
-    };
-
-    const handleFormSubmit = async (values: FieldValues) => {
-        try {
-            setLoading(true)
-            const response = await axios.post("/api/donations", { ...values, donationAmount: parseInt(values.donationAmount) });
-
-            if (response.status === 200) {
-                setModalOpen(false)
-                reset()
-                window.open("https://www.paypal.com/paypalme/KedusBible?v=1&utm_source=unp&utm_medium=email&utm_campaign=RT000269&utm_unptid=1d173892-5dae-11ee-a598-3cecef6b0210&ppid=RT000269&cnac=US&rsta=en_US%28en-US%29&cust=ZFGLH5CNR7VSG&unptid=1d173892-5dae-11ee-a598-3cecef6b0210&calc=f4767401b9a86&unp_tpcid=ppme-social-user-profile-created&page=main%3Aemail%3ART000269&pgrp=main%3Aemail&e=cl&mchn=em&s=ci&mail=sys&appVersion=1.205.0&xt=104038%2C124817", "_blank");
-            } else {
-                console.error("Error submitting data");
-            }
-        } catch (error) {
-            if (axios.isAxiosError(error) && error.response?.data?.error) {
-                console.warn(error.response.data.error);
-            } else {
-                console.error(error);
-                console.warn("An error occured while submitting the form");
-            }
-        }
-
-        setLoading(false)
-    };
-
 
     return (
         <div className="bg-[#F6F6F6] pb-20" id="donateNow">
             <div className="lg:text-center xl:w-7/12 lg:w-4/5 lg:p-32 p-8 mx-auto lg:mb-0 mb-6">
                 <PageHeader bigTitle={'Donate Now'} smallTitle={'SUPPORT OUR WORK'} />
-                <p>{`We are a team passionate about making the Bible accessible to everyone digitally, fostering a deeper connection with the scriptures and enriching spiritual journeys. Your generous donation can make a real difference in achieving this mission. Here's how your contribution can impact`}</p>
+                <p>We are a team passionate about making the Bible accessible to everyone digitally, fostering a deeper connection with the scriptures and enriching spiritual journeys. Your generous donation can make a real difference in achieving this mission. Here's how your contribution can impact</p>
             </div>
 
             <div className="relative flex lg:flex-row flex-col xl:w-[90%] lg:px-28 px-8 mx-auto gap-6 mb-12">
@@ -135,205 +70,125 @@ const Donate = () => {
                         <h1 className="text-xl font-semibold lg:mb-16 mb-10">Choose a donation amount</h1>
                         <div className="flex lg:space-x-44 space-x-28">
                             <div className="z-10 lg:mb-16 mb-8 flex flex-row lg:space-x-6 space-x-4">
-                                {/* <input type="radio" name="donationAmount" value="$10" onChange={handleAmountChange} style={{ width: '20px', height: '20px' }} /> */}
-                                <TextField fullWidth {...register('donationAmount')}
+                                <input
+                                    {...register('amount', {
+                                        required: true,
+                                    })}
                                     type="radio"
-                                    value={'10'}
+                                    value='10'
                                     className="mb-6"
-                                    style={{height: '20', width: '20'}}/>
+                                    onClick={() => setValue('amount', '10')}
+                                    style={{ width: '20px', height: '20px' }}
+                                />
                                 <h4 className="font-semibold">$ 10</h4>
                             </div>
-                            <div className="relative lg:mb-16 mb-8 flex flex-row lg:space-x-6 space-x-4 items-center justify-start">
-                                <TextField fullWidth {...register('donationAmount')}
+                            <div className="relative lg:mb-16 mb-8 flex flex-row lg:space-x-6 space-x-4">
+                                <input
+                                    {...register('amount', {
+                                        required: true
+                                    })}
                                     type="radio"
-                                    value={'15'}
-                                    className="mb-6" />
+                                    value='15'
+                                    onClick={() => setValue('amount', '15')}
+                                    className="mb-6"
+                                    style={{ width: '20px', height: '20px' }} />
                                 <h4 className="font-semibold">$ 15</h4>
                             </div>
                         </div>
                         <div className="flex lg:space-x-44 space-x-28">
-                            <div className="relative mb-10 flex flex-row lg:space-x-6 space-x-4 items-center justify-start">
-                                <TextField fullWidth {...register('donationAmount')}
+                            <div className="relative mb-10 flex flex-row lg:space-x-6 space-x-4">
+                                <input
+                                    {...register('amount', {
+                                        required: true
+                                    })}
                                     type="radio"
-                                    value={'25'}
-                                    className="mb-6" />
+                                    value='25'
+                                    className="mb-6"
+                                    onClick={() => setValue('amount', '25')}
+                                    style={{ width: '20px', height: '20px' }} />
                                 <h4 className="font-semibold">$ 25</h4>
                             </div>
-                            <div className="relative mb-10 flex flex-row lg:space-x-6 space-x-4 items-center justify-start">
-                                <TextField fullWidth {...register('donationAmount')}
+                            <div className="relative mb-10 flex flex-row lg:space-x-6 space-x-4">
+                                <input
+                                    {...register('amount', {
+                                        required: true
+                                    })}
                                     type="radio"
-                                    value={'50'}
-                                    className="mb-6" />
+                                    value='50'
+                                    onClick={() => setValue('amount', '50')}
+                                    className="mb-6"
+                                    style={{ width: '20px', height: '20px' }} />
                                 <h4 className="font-semibold">$ 50</h4>
                             </div>
                         </div>
-                        <div className="relative flex flex-row items-center mt-20 lg:mb-0 mb-10">
-                            <p className="text-xl font-semibold flex items-center justify-center my-auto">$</p>
-                            {/* <input type="text" placeholder="Write your own amount" className="outline-none border bg-transparent border-[#D9D9D9] placeholder:text-[#000000] pl-4 pr-10 py-2 rounded-md" /> */}
-                            <TextField fullWidth {...register('donationAmount')}
+                        <div className="relative flex flex-row lg:mb-0 mb-10">
+                            <p className="text-xl font-semibold flex my-auto">$</p>
+                            <TextField fullWidth {...register('amount')}
                                 type="text"
                                 placeholder="Write your own amount"
                                 onChange={(e: any) => {
-                                    setValue('donationAmount', e.target.value)
+                                    setValue('amount', e.target.value)
                                 }}
-                                style={{}}
-                                className="mb-6 pl-4 pr-52" />
+                                className="mb-6 pl-4 pr-52"
+                            />
                         </div>
                     </div>
                     <div className="col-span-1 relative">
                         <h1 className="text-xl font-semibold mb-16">Desired payment method</h1>
-                        <div className="mb-10 flex flex-row space-x-6 items-center justify-start">
-                            {/* <input type="radio" name="paymentMethod" value="chapa" onChange={handlePaymentChange} style={{ width: '20px', height: '20px' }} /> */}
-                            <TextField fullWidth {...register('paymentMethod', {
-                                required: 'Payment method is required',
+                        <div className="mb-10 flex flex-row space-x-6">
+                            <input {...register('paymentMethod', {
+                                required: true,
                             })}
                                 type="radio"
                                 value={'Chapa'}
-                                error={!!errors.paymentMethod}
-                                helperText={
-                                    errors.paymentMethod &&
-                                    (errors.paymentMethod.message as string)
-                                }
-                                className="mb-6" />
-                            <Image src={'/images/chapa.svg'} height={150} width={150} alt="" />
+                                style={{ width: '20px', height: '20px' }} />
+                            <Image src={'/images/chapa.svg'} height={200} width={200} alt="" />
                         </div>
-                        <div className="mb-10 flex flex-row space-x-6 items-center justify-start">
-                            <TextField fullWidth {...register('paymentMethod', {
-                                required: 'Payment method is required',
-                            })}
+                        <div className="mb-10 flex flex-row space-x-6">
+                            <input {...register('paymentMethod')}
                                 type="radio"
                                 value={'subsplash'}
-                                error={!!errors.paymentMethod}
-                                helperText={
-                                    errors.paymentMethod &&
-                                    (errors.paymentMethod.message as string)
-                                }
-                                className="mb-6" />
-                            <Image src={'/images/subsplash.svg'} height={150} width={150} alt="" />
+                                style={{ width: '20px', height: '20px' }}
+                            />
+                            <Image src={'/images/subsplash.svg'} height={200} width={200} alt="" />
                         </div>
-                        <div className="flex flex-row space-x-6 items-center justify-start mb-16">
-                            <TextField fullWidth {...register('paymentMethod', {
-                                required: 'Payment method is required',
-                            })}
+                        <div className="flex flex-row space-x-6 mb-16">
+                            <input
+                                {...register('paymentMethod')}
                                 type="radio"
                                 value={'paypal'}
-                                error={!!errors.paymentMethod}
-                                helperText={
-                                    errors.paymentMethod &&
-                                    (errors.paymentMethod.message as string)
-                                }
-                                className="mb-6" />
-                            <Image src={'/images/paypal.svg'} height={150} width={150} alt="" />
+                                style={{ width: '20px', height: '20px' }} />
+                            <Image src={'/images/paypal.svg'} height={200} width={200} alt="" />
                         </div>
                         <div>
                             <h1 className="text-xl font-semibold mb-8">Choose a donation frequency</h1>
                             <div className="flex space-x-20">
-                                <div className="z-10 mb-16 flex flex-row space-x-4 items-center justify-start">
-                                    <TextField fullWidth {...register('donationFrequency', {
-                                        required: 'Donation frequency is required',
-                                    })}
+                                <div className="z-10 mb-16 flex flex-row space-x-4">
+                                    <input
+                                        {...register('frequency', {
+                                            required: 'Donation frequency is required',
+                                        })}
                                         type="radio"
                                         value={'Monthly'}
-                                        error={!!errors.donationFrequency}
-                                        helperText={
-                                            errors.donationFrequency &&
-                                            (errors.donationFrequency.message as string)
-                                        }
-                                        className="mb-6" />
+                                        className="mb-6"
+                                        style={{ width: '20px', height: '20px' }} />
                                     <h4>Monthly</h4>
                                 </div>
-                                <div className="z-10 mb-16 flex flex-row space-x-4 items-center justify-start">
-                                    <TextField fullWidth {...register('donationFrequency', {
-                                        required: 'Donation frequency is required',
-                                    })}
+                                <div className="z-10 mb-16 flex flex-row space-x-4">
+                                    <input
+                                        {...register('frequency', {
+                                            required: 'Donation frequency is required',
+                                        })}
                                         type="radio"
                                         value={'One Time'}
-                                        error={!!errors.donationFrequency}
-                                        helperText={
-                                            errors.donationFrequency &&
-                                            (errors.donationFrequency.message as string)
-                                        }
-                                        className="mb-6" />
+                                        className="mb-6"
+                                        style={{ width: '20px', height: '20px' }} />
                                     <h4>One Time</h4>
                                 </div>
                             </div>
-                            <button className="z-10 mt-[-18px] bg-black text-white px-14 py-2 lg:text-start justify-center rounded-3xl flex" onClick={handleModalOpen}>Donate Now</button>
-
-                        {/* Modal */}
-                        <Modal open={modalOpen} onClose={handleModalClose}>
-                            <Box sx={{
-                                position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', bgcolor: 'background.paper', borderRadius: '8px', boxShadow: 24, padding: '65px 30px', width: 600, outline: 'none',
-                                '@media screen and (max-width: 760px)': {
-                                    padding: '100px 20px',
-                                    width: '100vw',
-                                    height: '100vh',
-                                    borderRadius: 0
-                                }
-                            }}>
-                                <div className="relative lg:top-[-25px] top-[-50px] flex float-end hover:cursor-pointer w-fit" style={{ marginTop: '-20px' }} onClick={handleModalClose}>
-                                    <Close />
-                                </div>
-                                <div>
-                                    <h2 className="font-semibold text-xl mb-4">Express Your Generosity</h2>
-                                    <p className="text-base mb-4">Share your name and email to join our mission of making a difference. Together, we can create positive change. Thank you for your support.</p>
-                                </div>
-                                <form onSubmit={handleSubmit(handleFormSubmit)}>
-                                    <div>
-                                        <p className="font-semibold mb-3">Name</p>
-                                        <TextField fullWidth {...register('fullName', {
-                                            required: 'Full Name is required',
-                                        })}
-                                            placeholder="Full Name"
-                                            type="text"
-                                            variant="outlined"
-                                            error={!!errors.fullName}
-                                            helperText={
-                                                errors.fullName &&
-                                                (errors.fullName.message as string)
-                                            }
-                                            className="mb-6 border border-slate-300" 
-                                            onChange={handleFullNameChange}/>
-                                    </div>
-                                    <div>
-                                        <p className="font-semibold mb-3">Address</p>
-                                        <TextField
-                                            fullWidth
-                                            {...register('email', {
-                                                required: 'Email is required',
-                                                pattern: {
-                                                    value: EMAIL_REGEX,
-                                                    message: 'Please enter a valid email address'
-                                                }
-                                            })}
-                                            type="text"
-                                            placeholder="Email"
-                                            variant="outlined"
-                                            error={!!errors.email}
-                                            helperText={
-                                                errors.email &&
-                                                (errors.email.message as string)
-                                            }
-
-                                            className="border border-slate-300 mb-8" 
-                                            onChange={handleEmailChange}/>
-                                    </div>
-                                    <button type='submit' className="bg-black hover:bg-black text-white px-10 py-2 rounded-3xl top-10" style={{ float: "right" }} disabled={loading}>
-                                        {loading ? (
-                                            <div className="flex items-center">
-                                                <span className="mr-2">Submit</span>
-                                                <CircularProgress
-                                                    style={{ color: 'white' }}
-                                                    size={20}
-                                                />
-                                            </div>
-                                        ) : (
-                                            'Submit'
-                                        )}
-                                    </button>
-                                </form>
-                            </Box>
-                        </Modal>
-                    </div>
+                            <button className="z-10 mt-[-18px] bg-black text-white px-14 py-2 lg:text-start justify-center rounded-3xl flex">Donate Now</button>
+                            <DonateSubmissionModal open={modalOpen} onClose={() => setModalOpen(false)} donationPreference={donationPreference} />
+                        </div>
 
                         <div>
                         </div>
