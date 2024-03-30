@@ -12,7 +12,7 @@ interface SocialMediaProps {
     data: SocialMediaItems[]
 }
 
-const SocialMedias = ({ data }: SocialMediaProps) => {
+const SocialMediaIcons = ({ data }: SocialMediaProps) => {
     return (
         <div className="flex items-center space-x-6">
             {data.map((item, id) => (
@@ -26,4 +26,4 @@ const SocialMedias = ({ data }: SocialMediaProps) => {
     )
 }
 
-export default SocialMedias
+export default SocialMediaIcons

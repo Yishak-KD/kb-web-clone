@@ -1,4 +1,4 @@
-import SocialMedias, { SocialMediaItems } from "@/uicomponents/SocialMedias"
+import SocialMediaIcons, { SocialMediaItems } from "@/uicomponents/SocialMedias"
 import Image from "next/image"
 
 interface CardItems {
@@ -61,7 +61,7 @@ const CardSection = ({ items }: CardItemProps) => {
                         {(item.id === 1 || item.id === 5) && (
                             <div className="lg:block hidden mt-4 w-[100%]">
                                 <div className={`flex space-x-6 justify-center h-28 rounded-[30px] ${item.id === 1 ? 'bg-black' : 'bg-[#A2CAEB]'}`}>
-                                    {item.footerItem && <SocialMedias data={SocialMediasData} />}
+                                    {item.footerItem && <SocialMediaIcons data={SocialMediasData} />}
                                 </div>
                             </div>
                         )}

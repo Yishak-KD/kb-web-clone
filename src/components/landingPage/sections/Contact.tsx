@@ -7,7 +7,7 @@ import { CircularProgress, TextField } from "@mui/material"
 import Snackbar from "@/uicomponents/SnackBar"
 import { useState } from "react"
 import { EMAIL_REGEX } from "../../../../constants/constants"
-import SocialMedias, { SocialMediaItems } from "@/uicomponents/SocialMedias"
+import SocialMediaIcons, { SocialMediaItems } from "@/uicomponents/SocialMedias"
 import { QRCodeSVG } from 'qrcode.react';
 
 const SocialMediasData: SocialMediaItems[] = [
@@ -73,7 +73,7 @@ const Contact = () => {
 
                     <div className="flex flex-row space-x-5 mb-10">
                         <h1 className="font-semibold text-lg">Follow us</h1>
-                        <SocialMedias data={SocialMediasData} />
+                        <SocialMediaIcons data={SocialMediasData} />
                     </div>
                     <div className="lg:block hidden">
                         {/* Section 5 */}

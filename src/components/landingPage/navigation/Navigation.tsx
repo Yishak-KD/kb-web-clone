@@ -7,15 +7,37 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { useEffect, useState } from 'react'
 import Image from 'next/image';
 
+interface ListItems {
+    route: string
+    title: string
+}
+
+const ListDatas: ListItems[] = [
+    {
+        route: 'features',
+        title: 'Features'
+    },
+    {
+        route: 'benefits',
+        title: 'Benefits'
+    },
+    {
+        route: 'donateNow',
+        title: 'Donate Now'
+    },
+    {
+        route: 'contactUs',
+        title: 'Contact Us'
+    }
+]
+
 const Navigation = () => {
     const [isSmallScreen, setIsSmallScreen] = useState(false)
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
     useEffect(() => {
         handleResize()
-
         window.addEventListener('resize', handleResize)
-
         return () => {
             window.removeEventListener('resize', handleResize)
         }
@@ -59,18 +81,11 @@ const Navigation = () => {
                                 height={30}
                             />
                         </div>
-                        <div onClick={() => window.location.replace('/#features')} className='cursor-pointer hover:text-[#CAA12F]'>
-                            <span>Features</span>
-                        </div>
-                        <div onClick={() => window.location.replace('/#benefits')} className='cursor-pointer hover:text-[#CAA12F]'>
-                            <span>Benefits</span>
-                        </div>
-                        <div onClick={() => window.location.replace('/#donateNow')} className='cursor-pointer hover:text-[#CAA12F]'>
-                            <span>Donate Now</span>
-                        </div>
-                        <div onClick={() => window.location.replace('/#contactUs')} className='cursor-pointer hover:text-[#CAA12F]'>
-                            <span>Contact Us</span>
-                        </div>
+                        {ListDatas.map((item, id) => (
+                            <div onClick={() => window.location.replace(`/#${item.route}`)} className='cursor-pointer hover:text-[#CAA12F]'>
+                                <span>{item.title}</span>
+                            </div>
+                        ))}
                     </div>
                 </>
             )}
@@ -83,38 +98,13 @@ const Navigation = () => {
                     <div style={{ marginBottom: '25px' }}>
                     </div>
                     <div>
-                        <ListItem onClick={() => smoothScroll('features')}>
-                            <ListItemText primary="Features" />
-                        </ListItem>
-                        <ListItem
-                            onClick={() => smoothScroll('benefits')}
-                        >
-                            <ListItemText primary="Benefits" />
-                        </ListItem>
-                        <ListItem
-                            onClick={() => smoothScroll('donateNow')}
-                        >
-                            <ListItemText primary="Donate Now" />
-                        </ListItem>
-                        <ListItem
-                            onClick={() => smoothScroll('contactUs')}
-                        >
-                            <ListItemText primary="Contact Us" />
-                        </ListItem>
-                        {/* <Button
-                            variant="outlined"
-                            style={{
-                                backgroundColor: '#2B2A2A',
-                                color: '#FFFFFF',
-                                fontSize: 12,
-                                border: '1px solid #6528f7',
-                                borderRadius: '20px',
-                                padding: '10px 20px',
-                                margin: '20px 0px 20px 10px',
-                            }}
-                        >
-                            Contact Us
-                        </Button> */}
+                        {ListDatas.map((item, id) => (
+                            <div key={id}>
+                                <ListItem onClick={() => smoothScroll(item.route)}>
+                                    <ListItemText primary={item.title} />
+                                </ListItem>
+                            </div>
+                        ))}
                     </div>
                 </List>
             </Drawer>
