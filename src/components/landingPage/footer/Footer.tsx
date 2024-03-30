@@ -149,10 +149,8 @@ const Footer = () => {
                         <button
                             style={{
                                 height: "50px",
-                               
                                 minWidth: "50px",
                                 borderRadius: "5px",
-                                // backgroundColor: "#2B70FA",
                                 color: "#fff",
                                 border: "none",
                                 cursor: "pointer",

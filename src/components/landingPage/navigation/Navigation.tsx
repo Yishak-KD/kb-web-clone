@@ -34,7 +34,7 @@ const Navigation = () => {
     }
 
     return (
-        <div className='z-20 fixed flex flex-row justify-end items-center w-full lg:px-32 px-6 my-6'>
+        <div className='z-20 top-0 left-0 right-0 fixed flex flex-row justify-end items-center w-full lg:px-32 px-6 my-6'>
             {isSmallScreen ? (
                 <div>
                     <IconButton
