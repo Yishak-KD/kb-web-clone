@@ -191,7 +191,7 @@ const Donate = () => {
                                     borderRadius: 0
                                 }
                             }}>
-                                <div className="relative xl:lg:top-[-25px] top-[-50px] flex float-end hover:cursor-pointer w-fit" style={{ marginTop: '-20px' }} onClick={handleModalClose}>
+                                <div className="relative lg:top-[-25px] top-[-50px] flex float-end hover:cursor-pointer w-fit" style={{ marginTop: '-20px' }} onClick={handleModalClose}>
                                     <Close />
                                 </div>
                                 <div>

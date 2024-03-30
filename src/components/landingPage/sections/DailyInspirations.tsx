@@ -3,7 +3,7 @@ import PageHeader from "../PageHeader"
 
 const DailyInspirations = () => {
     return (
-        <div className="lg:w-[90%] w-full flex flex-col xl:gap-14 my-20 xl:pt-44 lg:pt-20 pt-24 xl:px-44 lg:px-12 px-8 mx-auto lg:grid lg:grid-cols-2" id="dailyDevotions">
+        <div className="lg:w-[90%] w-full flex flex-col gap-14 my-20 xl:pt-44 lg:pt-20 pt-24 xl:px-44 lg:px-12 px-8 mx-auto lg:grid lg:grid-cols-2" id="dailyDevotions">
             <div className="col-span-1">
                 <div className="lg:w-[70%]">
                     <PageHeader bigTitle={'Daily Inspiration at Your Fingertips'} smallTitle={'DEVOTIONALS WITH NOTIFICATIONS'} />

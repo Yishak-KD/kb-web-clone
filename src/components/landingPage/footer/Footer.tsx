@@ -77,7 +77,7 @@ const Footer = () => {
 
     return (
         <div className="bg-[#F6F6F6]">
-            <div className="mt-48 xl:px-32 lg:px-10 px-8 py-12 grid lg:grid-cols-4 md:grid-cols-2 lg:gap-2 gap-10">
+            <div className="lg:mt-48 mt-32 xl:px-32 lg:px-10 px-8 py-12 grid lg:grid-cols-4 md:grid-cols-2 lg:gap-2 gap-10">
                 <div>
                     <div className="flex flex-row items-center space-x-4">
                         <Image
@@ -93,11 +93,11 @@ const Footer = () => {
                     </p>
                 </div>
                 <div className="flex flex-col">
-                    <h3 className="text-base font-bold mb-3">Quick Links</h3>
+                    <h3 className="text-base font-bold mb-2">Quick Links</h3>
                     {quickLinks.map((item) => (
                         <Link
                             key={item.name}
-                            className="text-base pl-1 mt-3 w-fit"
+                            className="text-sm pl-1 mt-3 w-fit"
                             href={item.href}
                         >
                             {item.name}

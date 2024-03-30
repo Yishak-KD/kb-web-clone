@@ -40,10 +40,10 @@ const SocialMediasData: SocialMediaItems[] = [
 const CardSection = ({ items }: CardItemProps) => {
     return (
         <div className="w-full xl:lg:px-28 px-8 lg:mt-32 mt-14">
-            <div className="lg:flex lg:flex-row space-y-10 flex-col xl:space-x-10 lg:space-x-2 lg:h-80 items-end">
+            <div className="lg:flex lg:flex-row lg:space-y-10 space-y-4 flex-col xl:space-x-10 lg:space-x-2 lg:h-80 items-end">
                 {items.map((item, id) => (
                     <div className="lg:relative flex flex-col xl:w-[18%] w-full" key={id}>
-                        <div className={`lg:absolute ${item.id === 3 ? 'lg:-top-64 rounded-3xl' : 'lg:-top-80 rounded-3xl'}`} style={{ backgroundImage: `url(${item.backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                        <div className={`lg:absolute ${item.id === 3 ? 'lg:-top-64 rounded-3xl' : 'lg:-top-80 rounded-3xl'} ${item.id === 1 ? 'lg:mb-0 mb-6' : 'mb-0'}`} style={{ backgroundImage: `url(${item.backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
                             {/* Hide sections */}
                             <div className={`${item.id === 3 || item.id === 5 ? 'lg:block hidden': 'block'}`}>
                                 <div className={`relative flex flex-col items-center justify-center ${item.id === 3 ? 'h-64' : 'h-80'}`}>
