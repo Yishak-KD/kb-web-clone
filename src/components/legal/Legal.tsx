@@ -23,7 +23,7 @@ const Legal: React.FC<IProps> = ({ title }) => {
     <section className="terms-wrapper">
       <div className="container">
         <div className="terms-content">
-          <h2 className="text-center">{title}</h2>
+          <h2 className="text-center font-bold text-2xl mb-4">{title}</h2>
           {renderDocument()}
         </div>
       </div>

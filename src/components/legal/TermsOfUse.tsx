@@ -1,6 +1,6 @@
 const TermsOfUse = () => {
   return (
-    <div className="px-28">
+    <div className="lg:px-28">
       <p>Effective as of May 28, 2020.</p>
       <p>
         By using Kedus Bible sites, services, and mobile applications (together,

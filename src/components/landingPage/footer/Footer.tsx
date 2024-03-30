@@ -5,6 +5,13 @@ import { EMAIL_REGEX } from "../../../../constants/constants";
 import axios from "axios";
 import { isSuccessfullStatus } from "../../../../util/ResponseValidation";
 
+const scrollToTop = () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "auto"
+    });
+};
+
 const Footer = () => {
     const [countryCode, setCountryCode] = useState("");
     const [email, setEmail] = useState("");
@@ -89,7 +96,7 @@ const Footer = () => {
                         <h1 className="text-2xl font-medium w-1/3">Kedus Bible</h1>
                     </div>
                     <p className="text-slate-700 text-base mt-4 lg:max-w-[60%]">
-                    Ensuring the transformative power of the scripture is within reach for all.
+                        Ensuring the transformative power of the scripture is within reach for all.
                     </p>
                 </div>
                 <div className="flex flex-col">
@@ -144,7 +151,7 @@ const Footer = () => {
                             }}
                             className={`bg-[#E3E3E390] outline-none text-lg text-slate-700 py-2 px-4  ${error && "border-red-500"
                                 }`}
-                            style={{ height: "50px", borderRadius: "5px",width:'calc(100% - 50px)' }}
+                            style={{ height: "50px", borderRadius: "5px", width: 'calc(100% - 50px)' }}
                         />
                         <button
                             style={{
@@ -170,11 +177,11 @@ const Footer = () => {
             </div>
             <div className="flex text-center text-sm justify-center mb-6">
                 <Link href={'/termsofuse'}>
-                    <p>Terms of Use</p>
+                    <p onClick={scrollToTop}>Terms of Use</p>
                 </Link>
                 <span className="mx-2">|</span>
                 <Link href={'/privacy'}>
-                    <p>Privacy Policy</p>
+                    <p onClick={scrollToTop}>Privacy Policy</p>
                 </Link>
             </div>
             <div className="text-center text-sm pb-8">

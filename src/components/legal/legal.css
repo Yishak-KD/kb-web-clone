@@ -1,18 +1,25 @@
 .terms-wrapper {
-    padding: 100px 0px 100px;
+  padding: 100px;
+}
+
+.terms-content h5 {
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+
+.terms-content p {
+  margin-bottom: 30px;
+  font-size: 16px;
+}
+
+.terms-content li {
+  font-size: 16px;
+  margin-left: 10px;
+  list-style-type: circle;
+}
+
+@media screen and (max-width: 720px) {
+  .terms-wrapper {
+    padding: 100px 16px;
   }
-  
-  .terms-content h2 {
-    margin-bottom: 70px;
-  }
-  
-  .terms-content p {
-    margin-bottom: 30px;
-    font-size: 16px;
-  }
-  
-  li {
-    font-size: 16px;
-    margin-left: 10px;
-    list-style-type: circle;
-  }
+}
