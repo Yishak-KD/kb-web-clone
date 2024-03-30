@@ -32,7 +32,8 @@ const Donate = () => {
             donationAmount: '10',
             donationFrequency: 'Monthly',
             paymentMethod: 'Chapa',
-           
+            fullName: '',
+            email: ''
         }
     })
 
@@ -133,12 +134,13 @@ const Donate = () => {
                         <img src="/images/ellipse6.svg" alt="" className="absolute top-20 left-[-200px] z-0 opacity-90" />
                         <h1 className="text-xl font-semibold lg:mb-16 mb-10">Choose a donation amount</h1>
                         <div className="flex lg:space-x-44 space-x-28">
-                            <div className="z-10 lg:mb-16 mb-8 flex lg:space-x-6 space-x-4 items-center justify-start">
+                            <div className="z-10 lg:mb-16 mb-8 flex flex-row lg:space-x-6 space-x-4">
                                 {/* <input type="radio" name="donationAmount" value="$10" onChange={handleAmountChange} style={{ width: '20px', height: '20px' }} /> */}
                                 <TextField fullWidth {...register('donationAmount')}
                                     type="radio"
                                     value={'10'}
-                                    className="mb-6" />
+                                    className="mb-6"
+                                    style={{height: '20', width: '20'}}/>
                                 <h4 className="font-semibold">$ 10</h4>
                             </div>
                             <div className="relative lg:mb-16 mb-8 flex flex-row lg:space-x-6 space-x-4 items-center justify-start">
