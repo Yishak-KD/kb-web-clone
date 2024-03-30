@@ -29,7 +29,6 @@ export async function POST(
             },
         })
 
-        // Return the success response as JSON
         return NextResponse.json({ 
             success: true,
             value: 'success'
@@ -37,7 +36,6 @@ export async function POST(
     } catch (error: any) {
         console.error(error)
 
-        // Return the error response as JSON
         return NextResponse.json({ 
             success: false,
             error: 'Failed to submit contact us message' 
