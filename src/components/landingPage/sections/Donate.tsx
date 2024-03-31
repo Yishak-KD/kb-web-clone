@@ -115,7 +115,9 @@ const Donate = () => {
                                     })}
                                     type="radio"
                                     value='50'
-                                    onClick={() => setValue('amount', '50')}
+                                    onClick={() => {
+                                        setValue('amount', '50')
+                                    }}
                                     className="mb-6"
                                     style={{ width: '20px', height: '20px' }} />
                                 <h4 className="font-semibold">$ 50</h4>

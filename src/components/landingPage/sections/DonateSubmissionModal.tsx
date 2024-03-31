@@ -73,7 +73,7 @@ const DonateSubmissionModal = ({ open, onClose, donationPreference }: DonateSubm
                     borderRadius: 0
                 }
             }}>
-                <div className="relative lg:top-[-25px] top-[-50px] flex float-end hover:cursor-pointer w-fit" style={{ marginTop: '-20px' }} onClick={onClose}>
+                <div className="relative lg:top-[-25px] md:top-[-20px] top-[-50px] flex float-end hover:cursor-pointer w-fit" style={{ marginTop: '-20px' }} onClick={onClose}>
                     <Close />
                 </div>
                 <div>
