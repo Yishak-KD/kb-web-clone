@@ -82,7 +82,7 @@ const Navigation = () => {
                             />
                         </div>
                         {ListDatas.map((item, id) => (
-                            <div onClick={() => window.location.replace(`/#${item.route}`)} className='cursor-pointer hover:text-[#CAA12F]'>
+                            <div onClick={() => window.location.replace(`/#${item.route}`)} className='cursor-pointer hover:text-[#CAA12F]' key={id}>
                                 <span>{item.title}</span>
                             </div>
                         ))}
@@ -94,10 +94,19 @@ const Navigation = () => {
                 onClose={() => smoothScroll('')}
                 anchor="left"
             >
-                <List style={{ width: '200px', padding: '40px 10px' }}>
+                <List style={{ width: '200px', padding: '10px 10px' }}>
                     <div style={{ marginBottom: '25px' }}>
                     </div>
                     <div>
+                        <div onClick={() => smoothScroll('home')
+                        } className='cursor-pointer ml-10'>
+                            <Image
+                                src={'/images/kb_logo.svg'}
+                                alt=""
+                                width={50}
+                                height={50}
+                            />
+                        </div>
                         {ListDatas.map((item, id) => (
                             <div key={id}>
                                 <ListItem onClick={() => smoothScroll(item.route)}>
