@@ -30,7 +30,6 @@ const DonateSubmissionModal = ({ open, onClose, donationPreference }: DonateSubm
         try {
             setLoading(true)
             if (!donationPreference) {
-                // SHOW ERROR MESSAGE TO USERS
                 return
             }
             const response = await axios.post("/api/donations",
