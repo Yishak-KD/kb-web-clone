@@ -17,6 +17,7 @@ export interface DonationPreference {
 const Donate = () => {
     const [modalOpen, setModalOpen] = useState(false);
     const [donationPreference, setDonationPreference] = useState<DonationPreference | undefined>(undefined)
+    const [amountError, setAmountError] = useState<string>("")
 
     const {
         register,
@@ -26,9 +27,14 @@ const Donate = () => {
         formState: { errors },
     } = useForm<DonationPreference>()
 
-    const handleFormSubmit = async (_donationPreference: DonationPreference,) => {
+    const handleFormSubmit = async (_donationPreference: DonationPreference) => {
+        if (!_donationPreference.amount) {
+            setAmountError('Amount is required')
+            return;
+        }
         setModalOpen(true)
         setDonationPreference(_donationPreference)
+        setAmountError("")
     };
 
     return (
@@ -74,7 +80,7 @@ const Donate = () => {
                         <div className="flex lg:space-x-44 space-x-28">
                             <div className="z-10 lg:mb-16 mb-8 flex flex-row lg:space-x-6 space-x-4">
                                 <input
-                                    {...register('amount', { required: "Amount is required" })}
+                                    {...register('amount')}
                                     type="radio"
                                     value='10'
                                     className="mb-6"
@@ -115,7 +121,7 @@ const Donate = () => {
                         <div className="relative flex flex-row lg:mb-0 mb-10">
                             <p className="font-medium flex my-auto text-3xl">$</p>
                             <TextField fullWidth
-                                type="text"
+                                type="number"
                                 placeholder="Write your own amount"
                                 defaultValue={watch('amount')}
                                 onChange={(e: any) => {
@@ -124,7 +130,7 @@ const Donate = () => {
                                 className="pl-4 lg:pr-52"
                             />
                         </div>
-                        {errors.amount && <p className="text-red-500 relative">{errors.amount.message}</p>}
+                        {amountError && <p className="text-red-500 relative">{amountError}</p>}
                     </div>
                     <div className="col-span-1 relative">
                         <h1 className="text-xl font-semibold mb-16">Desired payment method</h1>
