@@ -1,5 +1,4 @@
 import prisma from '../../../../lib/prisma';
-import { Subscriber } from '@prisma/client'
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(
@@ -14,26 +13,27 @@ export async function POST(
             .then(data => data)
 
         if (Boolean(emailExist)) {
-            return NextResponse.json({ 
+            return NextResponse.json({
                 status: false,
-                error: 'Email already exist' })
+                error: 'Email already exist'
+            })
         } else {
-            const subscriber: Subscriber = await prisma.subscriber.create({
+            await prisma.subscriber.create({
                 data: { email }
             })
 
-            return NextResponse.json({ 
+            return NextResponse.json({
                 success: true,
-                value: subscriber
-             }, { status: 200 })
+                value: 'success'
+            }, { status: 200 })
         }
 
     } catch (error: any) {
         console.error(error)
 
-        return NextResponse.json({ 
+        return NextResponse.json({
             success: false,
-            error: 'Failed to save donation intent' 
+            error: 'Failed to save donation intent'
         }, { status: 500 })
     }
 }

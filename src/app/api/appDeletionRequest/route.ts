@@ -10,6 +10,10 @@ export async function POST(
         email,
     } = await req.json()
 
+    if (!fullName || !email) {
+        return NextResponse.json({ message: 'Full name and email are required' }, { status: 400 });
+    }
+    
     try {
         const response = await axios.post('https://us-central1-kedus-bible-20.cloudfunctions.net/lib-api/deleteUserData', {
             email: email,
@@ -24,7 +28,6 @@ export async function POST(
                 },
             })
 
-            // Return the success response as JSON
             return NextResponse.json({
                 success: true,
                 value: 'success'
@@ -37,7 +40,6 @@ export async function POST(
     } catch (error: any) {
         console.error({ error })
 
-        // Return the error response as JSON
         return NextResponse.json(error.response.data, { status: error.response.status })
     }
 }

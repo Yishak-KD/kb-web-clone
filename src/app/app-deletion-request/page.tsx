@@ -2,7 +2,7 @@
 import AppDeletionForm from "@/components/userInformation/AppDeletionForm"
 
 const User = () => {
-    return (<AppDeletionForm />)
+    return <AppDeletionForm />
 }
 
 export default User

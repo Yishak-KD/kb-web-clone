@@ -40,6 +40,7 @@ const Contact = () => {
     } = useForm()
     const [showNotification, setShowNotification] = useState<boolean>(false)
     const [loading, setLoading] = useState<boolean>(false)
+    const [isFormSubmitted, setIsFormSubmitted] = useState<boolean>(false)
 
     const handleFormSubmit: SubmitHandler<FieldValues> = async (data: FieldValues) => {
         try {
@@ -47,6 +48,10 @@ const Contact = () => {
             const response = await axios.post('/api/contactUs', data)
             if (isSuccessfullStatus(response) && response.data.success) {
                 setShowNotification(true)
+                setIsFormSubmitted(true)
+                setTimeout(() => {
+                    setIsFormSubmitted(false)
+                }, 3000);
                 reset();
             } else {
                 console.warn('An error occurred while submitting the form.')
@@ -114,7 +119,7 @@ const Contact = () => {
                     </div>
                 </div>
                 <div className="col-span-1 lg:px-0 px-8">
-                    <form onSubmit={handleSubmit(handleFormSubmit)}>
+                    {!isFormSubmitted ? <form onSubmit={handleSubmit(handleFormSubmit)}>
                         <p className="font-semibold text-lg">Full Name</p>
                         <TextField
                             {...register('fullName', {
@@ -186,15 +191,19 @@ const Contact = () => {
                                 'Send Message'
                             )}
                         </button>
-                    </form>
-                    <div>
-                        <Snackbar
-                            open={showNotification}
-                            text="Successfully Sent"
-                            onClose={() => setShowNotification(false)}
-                            type="success"
-                        />
-                    </div>
+                    </form> : (
+                        <div>
+                            <Snackbar
+                                open={showNotification}
+                                text="Successfully Sent"
+                                onClose={() => setShowNotification(false)}
+                                type="success"
+                            />
+                            <div className="font-semibold text-lg bg-[#E0FFC7] py-2 rounded-md border shadow-lg text-center">
+                                Thank you for contacting us! We'll be in touch soon.
+                            </div>
+                        </div>
+                    )}
                 </div>
                 <div className="lg:hidden block mt-10 mx-auto px-20">
                     {/* Section 5 */}
