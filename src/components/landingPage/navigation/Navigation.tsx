@@ -47,13 +47,14 @@ const Navigation = () => {
         setIsSmallScreen(window.innerWidth < 1024)
     }
 
-    const smoothScroll = (targetId: string) => {
-        const target = document.getElementById(targetId)
-        if (target) {
-            target.scrollIntoView({ behavior: 'smooth' })
-        }
+    const smoothScroll = () => {
         setIsDrawerOpen(!isDrawerOpen)
     }
+
+    const handleListClick = (route: string) => {
+        window.location.replace(route);
+        setIsDrawerOpen(false)
+    };
 
     return (
         <div className='z-20 top-0 left-0 right-0 fixed flex flex-row justify-end items-center w-full lg:px-32 px-6 my-6'>
@@ -63,7 +64,7 @@ const Navigation = () => {
                         edge="start"
                         color="inherit"
                         aria-label="menu"
-                        onClick={() => smoothScroll('')}
+                        onClick={() => smoothScroll()}
                     >
                         <MenuIcon />
                     </IconButton>
@@ -91,14 +92,14 @@ const Navigation = () => {
             )}
             <Drawer
                 open={isDrawerOpen}
-                onClose={() => smoothScroll('')}
+                onClose={() => smoothScroll()}
                 anchor="left"
             >
                 <List style={{ width: '200px', padding: '10px 10px' }}>
                     <div style={{ marginBottom: '25px' }}>
                     </div>
                     <div>
-                        <div onClick={() => smoothScroll('home')
+                        <div onClick={() => handleListClick('/#home')
                         } className='cursor-pointer ml-10'>
                             <Image
                                 src={'/images/kb_logo.svg'}
@@ -109,7 +110,7 @@ const Navigation = () => {
                         </div>
                         {ListDatas.map((item, id) => (
                             <div key={id}>
-                                <ListItem onClick={() => smoothScroll(item.route)}>
+                                <ListItem onClick={() => handleListClick(`/#${item.route}`)}>
                                     <ListItemText primary={item.title} />
                                 </ListItem>
                             </div>
