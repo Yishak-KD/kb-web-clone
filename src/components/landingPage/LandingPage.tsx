@@ -10,7 +10,7 @@ import ExploreScripture from "./sections/ExploreScripture"
 import HeroSection from "./sections/HeroSection"
 import ImmerseYourself from "./sections/ImmerseYourself"
 import MakeBibleYourOwn from "./sections/MakeBibleYourOwn"
-import UncoverHidden from "./sections/UncoverHidden"
+import LocatePassage from "./sections/LocatePassage"
 
 const LandingPage = () => {
     return (
@@ -26,7 +26,7 @@ const LandingPage = () => {
             <ImmerseYourself />
             <DailyInspirations />
             <MakeBibleYourOwn />
-            <UncoverHidden />
+            <LocatePassage />
             <Benefits />
             <Donate />
             <Contact />

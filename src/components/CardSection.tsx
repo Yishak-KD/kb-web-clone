@@ -1,5 +1,4 @@
 import SocialMediaIcons, { SocialMediaItems } from "@/uicomponents/SocialMedias"
-import Image from "next/image"
 
 interface CardItems {
     id: number

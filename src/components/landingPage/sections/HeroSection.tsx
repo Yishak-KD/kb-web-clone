@@ -50,7 +50,7 @@ const CardItems: CardItemContents[] = [
     },
     {
         id: 5,
-        title: 'A variety of features available!',
+        title: 'How it All Started!',
         backgroundImage: '/images/bg5.svg',
         detailIcon: '/images/arrow4.svg',
         detailTitle: 'View features',
@@ -65,7 +65,7 @@ const HeroSection = () => {
             <div className="xl:lg:w-4/5 w-full m-auto">
                 <div className="text-center lg:w-2/4 md:w-[55%] w-3/4 m-auto">
                     <h1 className="xl:text-8xl lg:text-6xl text-4xl font-semibold mb-4">Kedus <span className="text-[#EED590]">Bible</span></h1>
-                    <p className="leading-7 text-lg mb-5">Enrich Your Spiritual Journey with the Kedus Bible Access the Bible in multiple languages, read daily devotionals, and take notes</p>
+                    <p className="leading-7 text-lg mb-5">Enrich your spiritual journey with a thoughtfully designed mobile application by accessing the Bible in multiple languages, read daily devotionals, and take highlights & notes.</p>
                 </div>
                 <div className="flex flex-row items-center justify-center lg:space-x-6 space-x-2">
                     <Link href={'https://play.google.com/store/apps/details?id=com.aevue.kedus_bible_flutter'} target="_blank">

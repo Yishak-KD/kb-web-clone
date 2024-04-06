@@ -41,7 +41,7 @@ const Donate = () => {
         <div className="bg-[#F6F6F6] pb-20" id="donateNow">
             <div className="lg:text-center xl:w-7/12 lg:w-4/5 lg:p-32 p-8 mx-auto lg:mb-0 mb-6">
                 <PageHeader bigTitle={'Donate Now'} smallTitle={'SUPPORT OUR WORK'} />
-                <p>We are a team passionate about making the Bible accessible to everyone digitally, fostering a deeper connection with the scriptures and enriching spiritual journeys. Your generous donation can make a real difference in achieving this mission. Here's how your contribution can impact</p>
+                <p>We are a team passionate about making the Bible accessible to everyone digitally, fostering a deeper connection with the scriptures and enriching spiritual journeys. Your generous donation can make a real difference in achieving this mission. Here's how your contribution can impact.</p>
             </div>
 
             <div className="relative flex lg:flex-row flex-col xl:w-[90%] lg:px-28 px-8 mx-auto gap-6 mb-12">

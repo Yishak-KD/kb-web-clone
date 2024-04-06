@@ -1,24 +1,22 @@
-import Image from "next/image"
-import PageHeader from "../PageHeader"
 import BenefitsCard, { BenefitCardContent } from "@/uicomponents/BenefitsCard"
 
 const BenefitCardData: BenefitCardContent[] = [
     {
         id: 1,
-        title: 'Community',
-        description: 'The Kedus Bible App allows you to share verses and devotionals with your friends and family. Connect with others to grow in your knowledge and understanding.',
+        title: 'Convenience',
+        description: 'The Kedus Bible App is a convenient way to access and read the Bible on the go. You can use it anywhere, anytime, even without an internet connection.',
         image: '/images/mobile1.svg'
     },
     {
         id: 2,
-        title: 'Personalization',
+        title: 'Customization',
         description: 'The Kedus Bible App allows you to personalize your Bible reading experience by choosing your preferred Bible translation, setting up daily devotional notifications, and highlighting and taking notes on verses.',
         image: '/images/benefiticon.svg'
     },
     {
         id: 3,
-        title: 'Convenience',
-        description: 'The Kedus Bible App is a convenient way to access and read the Bible on the go. You can use it anywhere, anytime, even without an internet connection.',
+        title: 'Impact',
+        description: 'The Kedus Bible App allows you to share verses and devotions with your friends and family. Help others find strength and guidance by sharing the verses and devotionals you love.',
         image: '/images/mobile2.svg'
     }
 ]

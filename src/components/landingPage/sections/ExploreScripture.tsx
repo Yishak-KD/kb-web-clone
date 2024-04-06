@@ -10,7 +10,7 @@ const ExploreScripture = () => {
                     <div className="lg:w-[70%]">
                         <PageHeader bigTitle={'Explore Scripture in Your Language'} smallTitle={'MULTIPLE LANGUAGES'} width={'80%'} />
                     </div>
-                    <p className="lg:w-[90%]">{`Dive into the richness of God's Word in the language that speaks to your heart - Amharic, English, Afaan Oromo, or Tigrinya and more to come. Enjoy the nuances and beauty of each translation as you deepen your understanding.`}</p>
+                    <p className="lg:w-[90%]">{`Explore the timeless wisdom, guidance, and inspiration of the Scripture in your native language for deeper understanding. Amharic, English, Afaan Oromo, or Tigrinya and more to come.`}</p>
                 </div>
             </div>
             <div className="lg:col-span-1 col-span-2">
