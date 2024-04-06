@@ -45,7 +45,7 @@ const DonateSubmissionModal = ({ open, onClose, donationPreference }: DonateSubm
             if (response.status === 200) {
                 reset()
                 onClose()
-                window.open("https://www.paypal.com/paypalme/KedusBible?v=1&utm_source=unp&utm_medium=email&utm_campaign=RT000269&utm_unptid=1d173892-5dae-11ee-a598-3cecef6b0210&ppid=RT000269&cnac=US&rsta=en_US%28en-US%29&cust=ZFGLH5CNR7VSG&unptid=1d173892-5dae-11ee-a598-3cecef6b0210&calc=f4767401b9a86&unp_tpcid=ppme-social-user-profile-created&page=main%3Aemail%3ART000269&pgrp=main%3Aemail&e=cl&mchn=em&s=ci&mail=sys&appVersion=1.205.0&xt=104038%2C124817", "_blank");
+                window.open("https://www.paypal.com/paypalme/KedusBible", "_blank");
             } else {
                 console.error("Error submitting data");
             }
