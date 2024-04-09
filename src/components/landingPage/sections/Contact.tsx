@@ -9,6 +9,7 @@ import { useState } from "react"
 import { EMAIL_REGEX } from "../../../../constants/constants"
 import SocialMediaIcons, { SocialMediaItems } from "@/uicomponents/SocialMedias"
 import { QRCodeSVG } from 'qrcode.react';
+import ReactGA from 'react-ga4';
 
 const SocialMediasData: SocialMediaItems[] = [
     {
@@ -53,9 +54,17 @@ const Contact = () => {
                     setIsFormSubmitted(false)
                 }, 3000);
                 reset();
+
+                ReactGA.event({
+                    label: 'ContactFormPage',
+                    category: 'Contact',
+                    action: 'contact_submission',
+                  });
             } else {
                 console.warn('An error occurred while submitting the form.')
             }
+
+
         } catch (error) {
             console.error('An error occurred:', error)
         }

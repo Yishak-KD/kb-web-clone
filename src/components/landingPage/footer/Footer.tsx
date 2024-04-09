@@ -5,6 +5,7 @@ import { EMAIL_REGEX } from "../../../../constants/constants";
 import axios from "axios";
 import { isSuccessfullStatus } from "../../../../util/ResponseValidation";
 import Snackbar from "@/uicomponents/SnackBar";
+import ReactGA from "react-ga4";
 
 const scrollToTop = () => {
     window.scrollTo({
@@ -68,6 +69,11 @@ const Footer = () => {
             try {
                 const res = await axios.post("/api/subscriber", {
                     email: email,
+                });
+                ReactGA.event({
+                    label: "button_click",
+                    category: "user_interaction",
+                    action: "user_subscribed",
                 });
 
                 if (isSuccessfullStatus(res)) {
