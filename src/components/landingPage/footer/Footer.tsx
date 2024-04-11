@@ -181,12 +181,13 @@ const Footer = () => {
                                 className="w-full"
                             />
                         </button>
-                        <Snackbar 
-                            open={showNotification} 
+                        <Snackbar
+                            open={showNotification}
                             text="Successfully subscribed"
                             onClose={() => setShowNotification(false)}
-                            type="success"/>
+                            type="success" />
                     </div>
+                    {error && <p className="text-sm text-red-500">Please enter a valid email address</p>}
                 </div>
             </div>
             <div className="flex text-center text-sm justify-center mb-6">
