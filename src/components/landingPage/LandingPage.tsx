@@ -8,7 +8,7 @@ import DailyInspirations from "./sections/DailyInspirations"
 import Donate from "./sections/Donate"
 import ExploreScripture from "./sections/ExploreScripture"
 import HeroSection from "./sections/HeroSection"
-import ImmerseYourself from "./sections/ImmerseYourself"
+import ListenBible from "./sections/ListenBible"
 import MakeBibleYourOwn from "./sections/MakeBibleYourOwn"
 import LocatePassage from "./sections/LocatePassage"
 
@@ -23,7 +23,7 @@ const LandingPage = () => {
             <HeroSection />
             <About />
             <ExploreScripture />
-            <ImmerseYourself />
+            <ListenBible />
             <DailyInspirations />
             <MakeBibleYourOwn />
             <LocatePassage />

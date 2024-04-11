@@ -8,7 +8,7 @@ const ExploreScripture = () => {
             <div className="lg:col-span-1 col-span-2 z-10">
                 <div className="z-10 relative mt-44">
                     <div className="lg:w-[70%]">
-                        <PageHeader bigTitle={'Explore Scripture in Your Language'} smallTitle={'MULTIPLE LANGUAGES'} width={'80%'} />
+                        <PageHeader bigTitle={'Multiple Languages'} smallTitle={'EXPLORE SCRIPTURE IN YOUR LANGUAGE'} width={'80%'} />
                     </div>
                     <p className="lg:w-[90%]">{`Explore the timeless wisdom, guidance, and inspiration of the Scripture in your native language for deeper understanding. Amharic, English, Afaan Oromo, or Tigrinya and more to come.`}</p>
                 </div>

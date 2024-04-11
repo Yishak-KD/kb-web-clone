@@ -47,28 +47,24 @@ const Donate = () => {
             <div className="relative flex lg:flex-row flex-col xl:w-[90%] lg:px-28 px-8 mx-auto gap-6 mb-12">
                 <img src="/images/ellipse4.svg" alt="" className="absolute lg:top-[-150px] top-[-200px] lg:left-10 left-0 z-0 opacity-90" />
                 <div className="z-10 rounded-xl px-10 py-6 border-2 border-[#FFFFFF]">
-                    <h1 className="text-xl font-semibold mb-3">Enhancing the App Experience</h1>
-                    <p>Your support allows us to develop new features and functionalities within the app.</p>
-                </div>
-                <div className="z-10 rounded-xl px-10 py-6 border-2 border-[#FFFFFF]">
-                    <h1 className="text-xl font-semibold mb-3 w-[60%]">Spreading the Word in More Languages</h1>
+                    <h1 className="text-xl font-semibold mb-3">Spreading the Word in More Languages</h1>
                     <p>Your support helps us to add multiple bible translation to reach wider communities and overcome language barriers.</p>
                 </div>
+                <div className="z-10 rounded-xl px-10 py-6 border-2 border-[#FFFFFF]">
+                    <h1 className="text-xl font-semibold mb-3 w-[60%]">Keeping it Free and Accessible</h1>
+                    <p>Your support is crucial in keeping the core functionalities of Kedus Bible free for everyone. This ensures financial limitations don't hinder individuals from engaging with the Bible.</p>
+                </div>
                 <div className="z-10 rounded-xl px-10 py-6 border-[#FFFFFF] border-2">
-                    <h1 className="text-xl font-semibold mb-3">Ensuring Continuous Growth</h1>
-                    <p>Maintaining and updating Kedus Bible requires ongoing resources.</p>
+                    <h1 className="text-xl font-semibold mb-3">Reaching a Wider Audience</h1>
+                    <p>Your contribution empowers us to reach more people through marketing and promotional efforts, spreading awareness about Kedus Bible and its benefits.</p>
                 </div>
             </div>
 
-            <div className="relative grid lg:grid-cols-2 xl:w-[90%] lg:px-28 px-8 mx-auto gap-10">
-                <div className="z-10 col-span-1 rounded-xl pb-10 px-10 py-6 border-[#FFFFFF] border-2">
-                    <h1 className="text-xl font-semibold mb-3">Reaching a Wider Audience</h1>
-                    <p>{`Your contribution empowers us to reach more people through marketing and promotional efforts, spreading awareness about Kedus Bible and its benefits.`}</p>
-                </div>
+            <div className="relative xl:w-3/5 lg:px-28 px-8 mx-auto gap-10">
                 <img src="/images/ellipse5.svg" alt="" className="absolute top-[-200px] xl:right-[-70px] right-0 z-0 opacity-90" />
-                <div className="z-10 col-span-1 rounded-xl px-10 py-6 border-[#FFFFFF] border-2">
-                    <h1 className="text-xl font-semibold mb-3">Keeping it Free and Accessible</h1>
-                    <p>{`Your support is crucial in keeping the core functionalities of Kedus Bible free for everyone. This ensures financial limitations don't hinder individuals from engaging with the Bible.`}</p>
+                <div className="relative rounded-xl px-10 py-6 border-[#FFFFFF] border-2 xl:text-center">
+                    <h1 className="text-xl font-semibold mb-3">Ensuring Continuous Growth</h1>
+                    <p className="xl:max-w-[70%] mx-auto">{`Your contribution allows us to continuously improve the app experience with new features and functionalities.`}</p>
                 </div>
             </div>
 

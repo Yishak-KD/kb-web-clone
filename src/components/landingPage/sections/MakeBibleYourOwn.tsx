@@ -9,7 +9,7 @@ const MakeBibleYourOwn = () => {
             </div>
             <div className="col-span-1 flex flex-col my-auto">
                 <div className="lg:w-[70%]">
-                    <PageHeader bigTitle={'Make the Bible Your Own'} smallTitle={'HIGHLIGHTS AND NOTE TAKING'} />
+                    <PageHeader bigTitle={'Highlights and Note Taking'} smallTitle={'MAKE THE BIBLE YOUR OWN'} />
                 </div>
                 <p className="lg:max-w-[80%]">Highlight your favorite passages for reference and take down notes to capture your thoughts and reflections. Easily revisit your highlights and notes at anytime to refresh your memory.</p>
             </div>
