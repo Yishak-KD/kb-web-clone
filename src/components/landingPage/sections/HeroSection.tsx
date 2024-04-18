@@ -1,6 +1,7 @@
 import CardSection from "@/components/CardSection"
 import Image from "next/image"
 import Link from "next/link"
+import ReactGA from "react-ga4";
 
 interface CardItemContents {
     id: number
@@ -60,6 +61,20 @@ const CardItems: CardItemContents[] = [
 ]
 
 const HeroSection = () => {
+    const trackOutboundLinkPlaystore = (url: string) => {
+        ReactGA.event({
+            category: 'Outbound Link for Playstore',
+            action: 'user_clicked_playstore_link',
+            label: url
+        })
+    }
+    const trackOutboundLinkAppstore = (url: string) => {
+        ReactGA.event({
+            category: 'Outbound Link for App store',
+            action: 'user_clicked_appstore_link',
+            label: url
+        })
+    }
     return (
         <div className="mb-32 pt-40" id="home">
             <div className="xl:lg:w-4/5 w-full m-auto">
@@ -69,10 +84,10 @@ const HeroSection = () => {
                 </div>
                 <div className="flex flex-row items-center justify-center lg:space-x-6 space-x-2">
                     <Link href={'https://play.google.com/store/apps/details?id=com.aevue.kedus_bible_flutter'} target="_blank">
-                        <Image src={'/images/playstore.svg'} height={155} width={155} alt="" />
+                        <Image src={'/images/playstore.svg'} height={155} width={155} alt="" onClick={() => trackOutboundLinkPlaystore('https://play.google.com/store/apps/details?id=com.aevue.kedus_bible_flutter')} />
                     </Link>
                     <Link href={'https://apps.apple.com/us/app/id1501044432'} target="_blank">
-                        <Image src={'/images/appstore.svg'} height={150} width={150} alt="" />
+                        <Image src={'/images/appstore.svg'} height={150} width={150} alt="" onClick={() => trackOutboundLinkAppstore('https://apps.apple.com/us/app/id1501044432')}/>
                     </Link>
                 </div>
             </div>

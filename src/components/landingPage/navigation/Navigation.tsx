@@ -6,6 +6,7 @@ import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useEffect, useState } from 'react'
 import Image from 'next/image';
+import ReactGA from "react-ga4";
 
 interface ListItems {
     route: string
@@ -52,6 +53,11 @@ const Navigation = () => {
     }
 
     const handleListClick = (route: string) => {
+        const action = `User clicked on ${route}`;
+        ReactGA.event({
+            category: 'Navigation Click',
+            action: action,
+        });
         window.location.replace(route);
         setIsDrawerOpen(false)
     };

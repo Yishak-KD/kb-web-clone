@@ -71,7 +71,6 @@ const Footer = () => {
                     email: email,
                 });
                 ReactGA.event({
-                    label: "button_click",
                     category: "user_interaction",
                     action: "user_subscribed",
                 });
@@ -89,6 +88,15 @@ const Footer = () => {
         } else {
             setError(true);
         }
+    };
+
+    const handleLinkClick = (linkText: string) => {
+        ReactGA.event({
+            category: 'Link Click',
+            action: `user_clicked_on_${linkText}`,
+            label: linkText
+        });
+        scrollToTop();
     };
 
     return (
@@ -192,11 +200,11 @@ const Footer = () => {
             </div>
             <div className="flex text-center text-sm justify-center mb-6">
                 <Link href={'/termsofuse'}>
-                    <p onClick={scrollToTop}>Terms of Use</p>
+                    <p onClick={() => handleLinkClick('Terms of Use')}>Terms of Use</p>
                 </Link>
                 <span className="mx-2">|</span>
                 <Link href={'/privacy'}>
-                    <p onClick={scrollToTop}>Privacy Policy</p>
+                    <p onClick={() => handleLinkClick('Privacy Policy')}>Privacy Policy</p>
                 </Link>
             </div>
             <div className="text-center text-sm pb-8">

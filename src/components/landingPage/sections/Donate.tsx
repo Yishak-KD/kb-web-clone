@@ -4,6 +4,7 @@ import { useState } from "react"
 import TextField from "@mui/material/TextField";
 import DonateSubmissionModal from "./DonateSubmissionModal";
 import { useForm } from "react-hook-form";
+import ReactGA from "react-ga4";
 
 type DonationPaymentMethod = 'chapa' | 'subsplash' | 'paypal'
 type DonationFrequency = 'monthly' | 'one time'
@@ -35,6 +36,11 @@ const Donate = () => {
         setModalOpen(true)
         setDonationPreference(_donationPreference)
         setAmountError("")
+
+        ReactGA.event({
+            category: 'Donation Form Submission',
+            action: 'donation_form_submitted'
+        });
     };
 
     return (

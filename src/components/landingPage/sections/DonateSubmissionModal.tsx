@@ -5,6 +5,7 @@ import { DonationPreference } from "./Donate"
 import axios from "axios"
 import { EMAIL_REGEX } from "../../../../constants/constants"
 import { useState } from "react"
+import ReactGA from "react-ga4";
 
 interface DonateSubmissionModalProps {
     open: boolean
@@ -46,6 +47,11 @@ const DonateSubmissionModal = ({ open, onClose, donationPreference }: DonateSubm
                 reset()
                 onClose()
                 window.open("https://www.paypal.com/paypalme/KedusBible", "_blank");
+
+                ReactGA.event({
+                    category: 'Donation Form',
+                    action: 'donation_personal_information_submitted'
+                });
             } else {
                 console.error("Error submitting data");
             }
