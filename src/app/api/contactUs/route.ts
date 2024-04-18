@@ -1,6 +1,7 @@
 import prisma from '../../../../lib/prisma';
 import { NextRequest, NextResponse } from 'next/server';
 import Result from '../../../../util/Result';
+import axios from 'axios';
 
 export type ContactUsResponse = Result<string>
 
@@ -28,6 +29,16 @@ export async function POST(
                 message
             },
         })
+
+        const slackMessage = {
+            text: `*New Contact Form Submission*
+            • *Full Name:* ${fullName}
+            • *Email Address:* ${email}
+            • *Message:* ${message}`
+        };
+
+        await axios.post(process.env.SLACK_WEBHOOK_URL ?? "", slackMessage)
+
 
         return NextResponse.json({ 
             success: true,

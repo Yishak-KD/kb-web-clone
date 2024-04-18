@@ -12,6 +12,7 @@ jobs:
       NEXT_PUBLIC_IP_REGISTRY_API_KEY: ${{ secrets.NEXT_PUBLIC_IP_REGISTRY_API_KEY }}
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
       NEXT_PUBLIC_GA_KEY: ${{ secrets.NEXT_PUBLIC_GA_KEY }}
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL}}
 
     steps:
       - name: Checkout code
@@ -30,6 +31,7 @@ jobs:
           echo NEXT_PUBLIC_IP_REGISTRY_API_KEY=${{ secrets.NEXT_PUBLIC_IP_REGISTRY_API_KEY }} >> .env
           echo DATABASE_URL=${{ secrets.DATABASE_URL }} >> .env
           echo NEXT_PUBLIC_GA_KEY=${{ secrets.NEXT_PUBLIC_GA_KEY }} >> .env
+          echo SLACK_WEBHOOK_URL=${{ secrets.SLACK_WEBHOOK_URL }} >> .env
           cat .env
 
       - name: Configure Docker for GCP
@@ -41,6 +43,7 @@ jobs:
             --build-arg NEXT_PUBLIC_IP_REGISTRY_API_KEY=${{ secrets.NEXT_PUBLIC_IP_REGISTRY_API_KEY }} \
             --build-arg DATABASE_URL=${{ secrets.DATABASE_URL }} \
             --build-arg NEXT_PUBLIC_GA_KEY=${{ secrets.NEXT_PUBLIC_GA_KEY }} \
+            --build-arg SLACK_WEBHOOK_URL=${{ secrets.SLACK_WEBHOOK_URL }} \
             -t gcr.io/${{ secrets.GCP_KEDUS_BIBLE_PROJECT_ID }}/kedus-bible:latest .
           docker push gcr.io/${{ secrets.GCP_KEDUS_BIBLE_PROJECT_ID }}/kedus-bible:latest
 
@@ -59,5 +62,6 @@ jobs:
             docker run -d --name kedus-bible -p 3000:3000 \
               -e NEXT_PUBLIC_IP_REGISTRY_API_KEY=${{ secrets.NEXT_PUBLIC_IP_REGISTRY_API_KEY }} \
               -e DATABASE_URL=${{ secrets.DATABASE_URL }} \
+              -e SLACK_WEBHOOK_URL=${{ secrets.SLACK_WEBHOOK_URL }} \
               -e NEXT_PUBLIC_GA_KEY=${{ secrets.NEXT_PUBLIC_GA_KEY }} \
               gcr.io/${{ secrets.GCP_KEDUS_BIBLE_PROJECT_ID }}/kedus-bible:latest

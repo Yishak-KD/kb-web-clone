@@ -153,7 +153,7 @@ const Footer = () => {
                 </div>
                 <div className="w-full flex flex-col">
                     <h3 className="text-base font-bold mb-6">
-                        Subscribe to our news letter
+                        Subscribe to our newsletter
                     </h3>
 
                     <div className="flex flex-row w-full items-center">

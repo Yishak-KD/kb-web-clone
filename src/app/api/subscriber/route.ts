@@ -1,3 +1,4 @@
+import axios from 'axios';
 import prisma from '../../../../lib/prisma';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -18,6 +19,11 @@ export async function POST(
                 error: 'Email already exist'
             })
         } else {
+            const slackMessage = {
+                text: `Newsletter subscription: ${email}`
+            }
+
+            await axios.post(process.env.SLACK_WEBHOOK_URL ?? "", slackMessage)
             await prisma.subscriber.create({
                 data: { email }
             })
