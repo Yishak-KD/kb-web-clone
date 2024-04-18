@@ -5,7 +5,7 @@ import ReactGA from "react-ga4";
 export interface SocialMediaItems {
     id: number
     image: string
-    name: string
+    name?: string
     width: number
     link: string
 }
