@@ -45,7 +45,7 @@ const CardSection = ({ items }: CardItemProps) => {
     const handleClick = (item:CardItems) => {
         ReactGA.event({
             category: 'Button Click',
-            action: `User clicked on ${item.detailIcon}`
+            action: `User clicked on ${item.redirect}`
         });
         window.location.replace(item.redirect);
     };
