@@ -15,18 +15,21 @@ const SocialMediasData: SocialMediaItems[] = [
     {
         id: 1,
         image: '/images/facebook.svg',
+        name: 'Facebook',
         width: 10,
         link: 'https://facebook.com/kedusbible'
     },
     {
         id: 2,
         image: '/images/instagram.svg',
+        name: 'Instagram',
         width: 20,
         link: 'https://www.instagram.com/kedus_bible'
     },
     {
         id: 3,
         image: '/images/telegram.svg',
+        name: 'Telegram',
         width: 20,
         link: 'https://t.me/kedusbible'
     },
