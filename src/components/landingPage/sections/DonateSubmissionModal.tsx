@@ -44,9 +44,9 @@ const DonateSubmissionModal = ({ open, onClose, donationPreference }: DonateSubm
             );
 
             if (response.status === 200) {
+                window.open("https://www.paypal.com/paypalme/KedusBible", "_blank");
                 reset()
                 onClose()
-                window.open("https://www.paypal.com/paypalme/KedusBible", "_blank");
 
                 ReactGA.event({
                     category: 'Donation Form',
