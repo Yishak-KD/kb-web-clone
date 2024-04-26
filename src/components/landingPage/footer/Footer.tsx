@@ -93,7 +93,7 @@ const Footer = () => {
     const handleLinkClick = (linkText: string) => {
         ReactGA.event({
             category: 'Link Click',
-            action: `user_clicked_on_${linkText}`,
+            action: `clicked_${linkText}`,
             label: linkText
         });
         scrollToTop();

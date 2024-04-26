@@ -64,14 +64,14 @@ const HeroSection = () => {
     const trackOutboundLinkPlaystore = (url: string) => {
         ReactGA.event({
             category: 'Outbound Link for Playstore',
-            action: 'user_clicked_playstore_link',
+            action: 'clicked_playstore_link',
             label: url
         })
     }
     const trackOutboundLinkAppstore = (url: string) => {
         ReactGA.event({
             category: 'Outbound Link for App store',
-            action: 'user_clicked_appstore_link',
+            action: 'clicked_appstore_link',
             label: url
         })
     }

@@ -53,7 +53,7 @@ const Navigation = () => {
     }
 
     const handleListClick = (route: string) => {
-        const action = `User clicked on ${route}`;
+        const action = `clicked_${route}`;
         ReactGA.event({
             category: 'Navigation Click',
             action: action,
