@@ -44,7 +44,9 @@ const DonateSubmissionModal = ({ open, onClose, donationPreference }: DonateSubm
             );
 
             if (response.status === 200) {
-                window.open("https://www.paypal.com/paypalme/KedusBible", "_blank");
+                setTimeout(() => {
+                    window.open("https://www.paypal.com/paypalme/KedusBible", "_blank");
+                })
                 reset()
                 onClose()
 
