@@ -5,10 +5,7 @@ const ListenBible = () => {
     return (
         <div className="lg:grid lg:grid-cols-2 py-10 flex flex-col my-16 lg:w-4/5 xl:px-28 lg:px-12 px-8 mx-auto lg:gap-20 gap-4" id="audioBible">
             <div className="lg:col-span-1 mt-20 order-2 xl:lg:order-1">
-                <img src={'/images/scripture.gif'} height={500} width={500} alt="" loop/>
-                {/* <video width="500" height="500" controls preload="none" autoPlay>
-                    <source src="/images/scripture.mp4" type="video/mp4" />
-                </video> */}
+                <Image src={'/images/scripture.svg'} height={500} width={500} alt="" />
             </div>
             <div className="lg:col-span-1 flex justify-center flex-col order-1 xl:lg:order-2">
                 <div className="xl:w-[70%]">
