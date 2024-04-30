@@ -6,7 +6,7 @@ import DonateSubmissionModal from "./DonateSubmissionModal";
 import { useForm } from "react-hook-form";
 import ReactGA from "react-ga4";
 
-type DonationPaymentMethod = 'chapa' | 'subsplash' | 'paypal'
+type DonationPaymentMethod = 'awash' | 'subsplash' | 'paypal'
 type DonationFrequency = 'monthly' | 'one time'
 
 export interface DonationPreference {
@@ -141,9 +141,9 @@ const Donate = () => {
                                 required: 'Payment method is required',
                             })}
                                 type="radio"
-                                value={'Chapa'}
+                                value={'awash'}
                                 style={{ width: '20px', height: '20px' }} />
-                            <Image src={'/images/chapa.svg'} height={200} width={200} alt="" />
+                            <Image src={'/images/awash.svg'} height={200} width={200} alt="" />
                         </div>
                         <div className="mb-10 flex flex-row space-x-6">
                             <input {...register('paymentMethod')}
