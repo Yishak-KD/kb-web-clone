@@ -10,9 +10,9 @@ export const metadata: Metadata = {
   description: 'The Kedus Bible is a mobile app that offers the Bible in various languages.',
   metadataBase: new URL('https://kedusbible.com'),
   icons: {
-    icon: '/images/favicon-32x32.png',
-    shortcut: '/images/favicon-32x32.png',
-    apple: '/images/apple-touch-icon.png',
+    icon: '/images/favicon-32x32.ico',
+    shortcut: '/images/favicon-32x32.ico',
+    apple: '/images/apple-touch-icon.ico',
   },
   appleWebApp: {
     capable: true,
@@ -67,28 +67,28 @@ export default function RootLayout({
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1 viewport-fit=cover"
         />
-        <link rel="shortcut icon" href="/images/favicon-16x16.png" />
+        <link rel="shortcut icon" href="/images/favicon-16x16.ico" />
         <link
           rel="apple-touch-icon"
           sizes="180x180"
-          href="/images/apple-touch-icon.png"
+          href="/images/apple-touch-icon.ico"
         />
         <link
           rel="apple-icon"
           sizes="180x180"
-          href="/images/apple-icon.png"
+          href="/images/apple-icon.ico"
         />
         <link
           rel="icon"
-          type="image/png"
+          type="image/ico"
           sizes="32x32"
-          href="/images/favicon-32x32.png"
+          href="/images/favicon-32x32.ico"
         />
         <link
           rel="icon"
-          type="image/png"
+          type="image/ico"
           sizes="16x16"
-          href="/images/favicon-16x16.png"
+          href="/images/favicon-16x16.ico"
         />
       </Head>
       <body className={inter.className}>{children}</body>
