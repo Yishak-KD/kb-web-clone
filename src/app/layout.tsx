@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     capable: true,
     title: 'Kedus Bible',
     startupImage: {
-      url: '/images/apple-touch-icon.png',
+      url: '/images/apple-touch-icon.ico',
     },
     statusBarStyle: 'black-translucent',
   },
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     site: 'Kedus Bible',
     description: 'The Kedus Bible is a mobile app that offers the Bible in various languages.',
     title: 'Kedus Bible',
-    images: '/images/apple-icon.png',
+    images: '/images/apple-icon.ico',
   },
   openGraph: {
     type: 'website',
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     siteName: 'Kedus Bible',
     images: [
       {
-        url: '/images/apple-icon.png',
+        url: '/images/apple-icon.ico',
       },
     ],
   },
