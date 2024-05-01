@@ -90,15 +90,16 @@ const DonateSubmissionModal = ({ open, onClose, donationPreference }: DonateSubm
                     padding: '60px 20px',
                     width: '100vw',
                     height: '100vh',
-                    borderRadius: 0
+                    borderRadius: 0,
+                    overflowY: 'auto'
                 }
             }}>
-                <div className="relative lg:top-[-25px] md:top-[-20px] top-[-50px] flex float-end hover:cursor-pointer w-fit" style={{ marginTop: '0px' }} onClick={onClose}>
+                <div className="relative lg:top-[-25px] md:top-[-20px] top-[-50px] flex float-end hover:cursor-pointer w-fit md:mt-0 mt-8" onClick={onClose}>
                     <Close />
                 </div>
-                <div>
+                <div className="mt-6">
                     <h2 className="font-semibold text-xl mb-4">Express Your Generosity</h2>
-                    <p className="text-base mb-4 md:block hidden">Share your name and email to join our mission of making a difference. Together, we can create positive change. Thank you for your support.</p>
+                    <p className="text-base mb-4">Share your name and email to join our mission of making a difference. Together, we can create positive change. Thank you for your support.</p>
                 </div>
                 <form onSubmit={handleSubmit(handleFormSubmit)}>
                     <div>
