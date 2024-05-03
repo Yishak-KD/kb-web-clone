@@ -4,7 +4,7 @@ import PageHeader from "../PageHeader"
 const MakeBibleYourOwn = () => {
     return (
         <div className="lg:grid lg:grid-cols-2 py-20 lg:w-4/5 w-full gap-20 lg:px-0 px-8 flex flex-col mx-auto">
-            <div className="col-span-1 order-2 lg:order-none">
+            <div className="col-span-1 order-2 lg:order-none flex justify-center">
                 <Image src={'/images/makeBibleyourown.svg'} height={500} width={500} alt="" />
             </div>
             <div className="col-span-1 flex flex-col my-auto">

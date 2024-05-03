@@ -11,7 +11,7 @@ const BenefitCardData: BenefitCardContent[] = [
         id: 2,
         title: 'Customization',
         description: 'The Kedus Bible App allows you to personalize your Bible reading experience by choosing your preferred Bible translation, setting up daily devotional notifications, and highlighting and taking notes on verses.',
-        image: '/images/benefiticon.svg'
+        image: '/images/customize.gif'
     },
     {
         id: 3,
