@@ -20,7 +20,7 @@ const BenefitsCard = ({ data }: BenefitCardProps) => {
                         <h1 className="font-semibold text-xl mb-8">{item.title}</h1>
                         {item.id === 2 ? (
                             <div className="flex flex-col items-center">
-                                <Image src={item.image} height={350} width={350} alt="" className="mb-12"/>
+                                <Image src={item.image} height={250} width={200} alt="" className="mb-12"/>
                                 <p className="px-10 font-medium leading-7 text-center">{item.description}</p>
                             </div>
                         ) : (

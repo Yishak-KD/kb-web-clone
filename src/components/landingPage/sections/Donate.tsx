@@ -67,7 +67,7 @@ const Donate = () => {
             </div>
 
             <div className="relative xl:w-3/5 lg:px-28 px-8 mx-auto gap-10">
-                <img src="/images/ellipse5.svg" alt="" className="absolute top-[-200px] xl:right-[-70px] right-0 z-0 opacity-90" />
+                <img src="/images/ellipse5.svg" alt="" className="absolute top-[-200px] xl:right-[-300px] right-0 z-0 opacity-90" />
                 <div className="relative rounded-xl px-10 py-6 border-[#FFFFFF] border-2 xl:text-center">
                     <h1 className="text-xl font-semibold mb-3">Ensuring Continuous Growth</h1>
                     <p className="xl:max-w-[70%] mx-auto">{`Your contribution allows us to continuously improve the app experience with new features and functionalities.`}</p>
