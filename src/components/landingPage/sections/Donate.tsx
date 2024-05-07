@@ -191,7 +191,6 @@ const Donate = () => {
                             <button className="z-10 bg-black mt-6 text-white px-14 py-2 lg:text-start justify-center rounded-3xl flex">Donate Now</button>
                             <DonateSubmissionModal open={modalOpen} onClose={() => setModalOpen(false)} donationPreference={donationPreference} resetForm={() => reset()} />
                         </div>
-
                         <div>
                         </div>
                     </div>

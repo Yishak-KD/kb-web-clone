@@ -6,6 +6,7 @@ import axios from "axios"
 import { EMAIL_REGEX, PHONE_REGEX } from "../../../../constants/constants"
 import { useState } from "react"
 import ReactGA from "react-ga4";
+import Image from "next/image"
 
 interface DonateSubmissionModalProps {
     open: boolean
@@ -93,7 +94,7 @@ const DonateSubmissionModal = ({ open, onClose, donationPreference, resetForm }:
     return (
         <Modal open={open} onClose={resetModal}>
             <Box sx={{
-                position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', bgcolor: 'background.paper', borderRadius: '8px', boxShadow: 24, padding: '65px 30px', width: 650, outline: 'none',
+                position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', bgcolor: 'background.paper', borderRadius: '8px', boxShadow: 24, padding: '55px 30px', width: 650, outline: 'none',
                 '@media screen and (max-width: 760px)': {
                     padding: '60px 20px',
                     width: '100vw',
@@ -150,7 +151,7 @@ const DonateSubmissionModal = ({ open, onClose, donationPreference, resetForm }:
                                     className="border border-slate-300 mb-8" />
                             </div>
                             <div>
-                                <p className="font-semibold mb-3">Phone Number</p>
+                                <p className="font-semibold mb-3">Phone Number <span className="text-[#6e6e6e] text-sm font-semibold">(Optional)</span></p>
                                 <TextField
                                     fullWidth
                                     {...register('phoneNumber', {
@@ -184,10 +185,11 @@ const DonateSubmissionModal = ({ open, onClose, donationPreference, resetForm }:
                             </button>
                         </form>
                     </div>) : (
-                        <div>
+                        <div className="mt-10">
                             {(donationPreference?.paymentMethod == 'awash') ?
                                 <div className="mb-8">
-                                    <h1 className="text-base font-semibold mb-6">Donate to our Awash Bank account and empower communities.
+                                    <Image src={'/images/awash.svg'} height={200} width={200} alt="" />
+                                    <h1 className="text-lg font-semibold mb-6">Donate to our Awash Bank account and empower communities.
                                     </h1>
                                     <div className="flex items-center border rounded-lg overflow-hidden">
                                         <input
@@ -203,11 +205,16 @@ const DonateSubmissionModal = ({ open, onClose, donationPreference, resetForm }:
                                             {!copied ? 'Copy' : 'Copied'}
                                         </Button>
                                     </div>
-                                </div> : <div>Thank You for your generosity.</div>
+                                    <button onClick={resetModal} className="bg-black hover:bg-black text-white px-10 py-2 rounded-3xl top-10 mt-6" style={{ float: "right" }} disabled={loading}>
+                                        Close
+                                    </button>
+                                </div> : <div className="flex items-center justify-center bg-gray-100 p-8 rounded-lg shadow-lg">
+                                    <p className="text-center text-lg text-gray-800">
+                                        Thank you for your donation! Your support is a blessing to us and helps further our mission of sharing the wisdom and love found in the Bible. God bless you abundantly for your generosity!
+                                    </p>
+                                </div>
+
                             }
-                            <button onClick={resetModal} className="bg-black hover:bg-black text-white px-10 py-2 rounded-3xl top-10" style={{ float: "right" }} disabled={loading}>
-                                Close
-                            </button>
                         </div>
                     )
                 }
