@@ -13,6 +13,7 @@ import MakeBibleYourOwn from "./sections/MakeBibleYourOwn"
 import LocatePassage from "./sections/LocatePassage"
 import { useEffect } from "react"
 import { initGA } from "../../../util/analytics"
+import HowItStarted from "./sections/HowItStarted"
 
 const LandingPage = () => {
     useEffect((): void => {
@@ -32,6 +33,7 @@ const LandingPage = () => {
                 <DailyInspirations />
                 <MakeBibleYourOwn />
                 <LocatePassage />
+                <HowItStarted />
                 <Benefits />
                 <Donate />
                 <Contact />
