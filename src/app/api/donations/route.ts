@@ -27,17 +27,17 @@ export async function POST(
             },
         })
 
-        const slackMessage = {
-            text: `*Donation submission form*
-            • *Full Name:* ${fullName}
-            • *Email:* ${email}
-            • *Phone Number:* ${phoneNumber}
-            • *Donation Amount:* ${amount}
-            • *Payment Method:* ${paymentMethod}
-            • *Donation Frequency:* ${frequency}`
-        };
+        // const slackMessage = {
+        //     text: `*Donation submission form*
+        //     • *Full Name:* ${fullName}
+        //     • *Email:* ${email}
+        //     • *Phone Number:* ${phoneNumber}
+        //     • *Donation Amount:* ${amount}
+        //     • *Payment Method:* ${paymentMethod}
+        //     • *Donation Frequency:* ${frequency}`
+        // };
 
-        await axios.post(process.env.SLACK_WEBHOOK_URL ?? "", slackMessage)
+        // await axios.post(process.env.SLACK_WEBHOOK_URL ?? "", slackMessage)
 
         return NextResponse.json({ 
             success: true,
