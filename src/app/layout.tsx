@@ -114,7 +114,7 @@ export const metadata: Metadata = {
     siteName: 'Kedus Bible',
     images: [
       {
-        url: '/images/apple-icon.ico',
+        url: '/images/apple-icon.png',
       },
     ],
   },
