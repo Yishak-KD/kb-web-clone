@@ -2,20 +2,19 @@ import { Close } from '@mui/icons-material';
 import { Box, Button, CircularProgress, Modal, TextField } from '@mui/material';
 import {
   FieldErrors,
-  RegisterOptions,
-  SubmitErrorHandler,
-  SubmitHandler,
   UseFormHandleSubmit,
   UseFormRegister,
-  UseFormRegisterReturn,
   useForm,
 } from 'react-hook-form';
 import { DonationPreference } from './Donate';
 import axios from 'axios';
 import { EMAIL_REGEX, PHONE_REGEX } from '../../../../constants/constants';
-import { BaseSyntheticEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import ReactGA from 'react-ga4';
 import Image from 'next/image';
+
+const AWASH_BANK_ACCOUNT_NUMBER = '013201012585400';
+const PAYPAL_DONATION_LINK = 'https://www.paypal.com/paypalme/KedusBible';
 
 interface DonateSubmissionModalProps {
   open: boolean;
@@ -29,8 +28,6 @@ interface DonationUserInfo {
   email: string;
   phoneNumber: string;
 }
-
-const AWASH_BANK_ACCOUNT_NUMBER = '013201012585400';
 
 enum DonateState {
   from,
@@ -74,7 +71,7 @@ const DonateSubmissionModal = ({
       if (response.status === 200) {
         if (donationPreference.paymentMethod === 'paypal') {
           setTimeout(() => {
-            window.open('https://www.paypal.com/paypalme/KedusBible', '_blank');
+            window.open(PAYPAL_DONATION_LINK, '_blank');
           });
         }
         reset();
