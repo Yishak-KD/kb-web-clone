@@ -11,7 +11,7 @@ const DailyInspirations = () => {
                 <p className="lg:max-w-[80%]">Start each day grounded in faith with personalized daily devotionals, delivered straight to your device at your preferred time. Reflect on these thoughtful messages and draw strength and guidance from scripture.</p>
             </div>
             <div className="col-span-1 lg:mt-[-20px]">
-                <Image src={'/images/notifications.gif'} height={800} width={800} alt="" />
+                <Image src={'/images/notification.gif'} height={800} width={800} alt="" />
             </div>
         </div>
     )
