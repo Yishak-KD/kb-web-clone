@@ -25,6 +25,7 @@ const Donate = () => {
         handleSubmit,
         setValue,
         watch,
+        reset,
         formState: { errors },
     } = useForm<DonationPreference>()
 
@@ -189,9 +190,8 @@ const Donate = () => {
                             </div>
                             {errors.frequency && <p className="text-red-500">{errors.frequency.message}</p>}
                             <button className="z-10 bg-black mt-6 text-white px-14 py-2 lg:text-start justify-center rounded-3xl flex">Donate Now</button>
-                            <DonateSubmissionModal open={modalOpen} onClose={() => setModalOpen(false)} donationPreference={donationPreference} />
+                            <DonateSubmissionModal open={modalOpen} onClose={() => setModalOpen(false)} donationPreference={donationPreference} resetForm={() => reset()} />
                         </div>
-
                         <div>
                         </div>
                     </div>
