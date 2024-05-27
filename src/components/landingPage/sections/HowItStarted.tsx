@@ -13,7 +13,7 @@ interface ProfileData {
 const ProfileDataList: ProfileData[] = [
   {
     id: 1,
-    imageUrl: '/images/code-tag.jpg',
+    imageUrl: '/images/code-tag.png',
     bigTitle: 'How It Started',
     smallTitle: 'THE JOURNEY',
     description:
