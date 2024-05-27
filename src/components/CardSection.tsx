@@ -49,6 +49,7 @@ const CardSection = ({ items }: CardItemProps) => {
         });
         window.location.replace(item.redirect);
     };
+
     return (
         <div className="w-full xl:lg:px-28 px-8 lg:mt-32 mt-14">
             <div className="lg:flex lg:flex-row lg:space-y-10 space-y-4 flex-col xl:space-x-10 lg:space-x-2 lg:h-80 items-end">
@@ -58,7 +59,7 @@ const CardSection = ({ items }: CardItemProps) => {
                             {/* Hide sections */}
                             <div className={`${item.id === 3 || item.id === 5 ? 'lg:block hidden': 'block'}`}>
                                 <div className={`relative flex flex-col items-center justify-center ${item.id === 3 ? 'h-64' : 'h-80'}`}>
-                                    <h1 className={`font-bold text-center ${item.id === 2 ? 'lg:mt-[-180px]' : 'mt-0'} ${item.id === 4 ? 'lg:mt-[-180px] mt-[-150px]' : 'mt-0'} mx-auto xl:text-4xl lg:text-2xl text-4xl xl:lg:px-0 px-4`}>{item.title}</h1>
+                                    <h1 className={`font-bold text-center ${item.id === 2 ? 'lg:mt-[-180px]' : 'mt-0'} ${item.id === 4 ? 'lg:mt-[-180px] mt-[-150px] w-3/4' : 'mt-0'} mx-auto xl:text-4xl lg:text-2xl text-4xl xl:lg:px-0 px-4`}>{item.title}</h1>
                                     {item.image && <img src={item.image} alt="" height={110} width={110} className="lg:absolute lg:mt-10" />}
                                     <div className={`cursor-pointer absolute flex lg:flex-row items-center border-[#fff] py-2 px-2 rounded-full ${item.id === 4 ? 'bg-transparent' : 'bg-[#D7E5EC]'} w-[90%] justify-between bottom-2`}
                                         onClick={() => handleClick(item)}>
