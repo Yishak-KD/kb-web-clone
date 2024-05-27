@@ -25,6 +25,7 @@ const Donate = () => {
         handleSubmit,
         setValue,
         watch,
+        reset,
         formState: { errors },
     } = useForm<DonationPreference>()
 
@@ -145,14 +146,15 @@ const Donate = () => {
                                 style={{ width: '20px', height: '20px' }} />
                             <Image src={'/images/awash.svg'} height={200} width={200} alt="" />
                         </div>
-                        <div className="mb-10 flex flex-row space-x-6">
+                        {/* TO BE USED */}
+                        {/* <div className="mb-10 flex flex-row space-x-6">
                             <input {...register('paymentMethod')}
                                 type="radio"
                                 value={'subsplash'}
                                 style={{ width: '20px', height: '20px' }}
                             />
                             <Image src={'/images/subsplash.svg'} height={200} width={200} alt="" />
-                        </div>
+                        </div> */}
                         <div className="flex flex-row space-x-6 mb-6">
                             <input
                                 {...register('paymentMethod')}
@@ -188,9 +190,8 @@ const Donate = () => {
                             </div>
                             {errors.frequency && <p className="text-red-500">{errors.frequency.message}</p>}
                             <button className="z-10 bg-black mt-6 text-white px-14 py-2 lg:text-start justify-center rounded-3xl flex">Donate Now</button>
-                            <DonateSubmissionModal open={modalOpen} onClose={() => setModalOpen(false)} donationPreference={donationPreference} />
+                            <DonateSubmissionModal open={modalOpen} onClose={() => setModalOpen(false)} donationPreference={donationPreference} resetForm={() => reset()} />
                         </div>
-
                         <div>
                         </div>
                     </div>
