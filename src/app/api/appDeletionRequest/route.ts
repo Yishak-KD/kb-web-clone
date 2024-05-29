@@ -13,13 +13,13 @@ export async function POST(
     if (!fullName || !email) {
         return NextResponse.json({ message: 'Full name and email are required' }, { status: 400 });
     }
-    
+
     try {
-        const response = await axios.post('https://us-central1-kedus-bible-20.cloudfunctions.net/lib-api/deleteUserData', {
+        const response = await axios.post('https://us-central1-kedus-bible-20.cloudfunctions.net/deleteUserData', {
             email: email,
             fullName: fullName
         });
-        
+
         if (response.data.success) {
             await prisma.appDeletionRequest.create({
                 data: {
