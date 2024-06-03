@@ -87,8 +87,8 @@ const HeroSection = () => {
           </h3>
           <p className='leading-7 text-lg mb-5'>
             Enrich your spiritual journey with a thoughtfully designed mobile
-            application by accessing the Bible in multiple languages, read daily
-            devotionals, and take highlights & notes.
+            application by accessing the Bible in multiple languages, reading
+            daily devotionals, and taking highlights & notes.
           </p>
         </div>
         <div className='flex flex-row items-center justify-center lg:space-x-6 space-x-2'>

@@ -25,7 +25,7 @@ const ProfileDataList: ProfileData[] = [
     description:
       'Years later, as a college student studying Computer Science, he created the first version of Kedus Bible. Driven by a mission to make the bible accessible, to foster familial fellowship through daily devotionals, and to provide spiritual resources for communities in East Africa and beyond. Today, Kedus Bible has over 25k and growing users across Android and iOS, shaping the lives of families and individuals that use it.',
     quotedText:
-      '"Our mission remains steadfast, to ensure the transformative power of the scripture is within reach for all."',
+      'Our mission remains steadfast, to ensure the transformative power of the scripture is within reach for all.',
   },
 ];
 
@@ -63,7 +63,7 @@ const HowItStarted = () => {
                 <p className='font-sans text-xl'>{item.description}</p>
                 <blockquote className='relative mt-12'>
                   <svg
-                    className='absolute -top-6 -start-8 size-16 text-gray-100 dark:text-neutral-700'
+                    className='absolute -top-6 -start-14 size-16 text-gray-100 dark:text-neutral-700'
                     width='16'
                     height='16'
                     viewBox='0 0 16 16'
