@@ -80,10 +80,10 @@ const HeroSection = () => {
       <div className='xl:lg:w-4/5 w-full m-auto'>
         <div className='text-center lg:w-2/4 md:w-[55%] w-3/4 m-auto'>
           <h1 className='xl:text-8xl lg:text-6xl text-4xl font-semibold mb-4'>
-            Kedus <span className='text-[#EED590]'>Bible</span>
+          Kedus <span className='text-[#EED590]'>Bible</span>
           </h1>
           <h3 className='font-semibold mb-4'>
-            Amharic, Afaan Oromo, Tigrigna & English
+            Amharic (የድሮ ትርጉም እና አዲሱ መደበኛ ትርጉም), Afaan Oromo, Tigrigna & English
           </h3>
           <p className='leading-7 text-lg mb-5'>
             Enrich your spiritual journey with a thoughtfully designed mobile
