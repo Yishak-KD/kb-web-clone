@@ -2,12 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import prisma from '../../../../lib/prisma';
 import { put } from '@vercel/blob';
 import axios from 'axios';
-
-// Helper function to format date for filename
-function getFormattedDate() {
-  const date = new Date();
-  return date.toISOString().split('T')[0];
-}
+import { getFormattedDate } from '../../../../util/getFormattedate';
 
 export async function GET(req: NextRequest) {
   try {
@@ -30,7 +25,7 @@ export async function GET(req: NextRequest) {
     const filename = `backup-${getFormattedDate()}.json`;
     const blob = await put(filename, backupJson, {
       contentType: 'application/json',
-      access: 'private'
+      access: 'public'
     });
 
     const successMessage = {
