@@ -18,6 +18,7 @@
     "@mui/icons-material": "^5.15.14",
     "@mui/material": "^5.15.13",
     "@prisma/client": "^5.11.0",
+    "@vercel/blob": "^0.27.2",
     "axios": "^1.6.8",
     "next": "13.4.2",
     "qrcode.react": "^3.1.0",
